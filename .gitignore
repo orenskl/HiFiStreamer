@@ -1,0 +1,42 @@
+# build directorys
+/build.*/
+/builds
+/.fakeroot.*
+
+# automatically downloaded source files
+/sources/
+
+# prebuild target binarys to provide
+/target/
+
+# mkpkg temp
+mkpkg-temp
+
+# options
+/.libreelec
+
+# private working directory
+/.work/
+
+# dedicated filesystem
+/lost+found/
+
+# symlinks...
+/sources
+/.work
+
+# ccache
+/.ccache/
+
+# backup files
+*.orig
+
+# crap
+.DS_Store
+.directory
+
+# ignore git repos from update scripts
+tools/mkpkg/*.git
+
+# ignore old linux configs
+projects/**/*.old
