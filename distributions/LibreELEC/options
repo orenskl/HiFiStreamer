@@ -68,92 +68,14 @@
 # debug tty path
   DEBUG_TTY="/dev/tty3"
 
-
-### KODI SETTINGS ###
-# Mediacenter to use (kodi / no)
-  MEDIACENTER="no"
-
-# Skins to install (Estuary)
-# Space separated list is supported,
-# e.g. SKINS="Estuary"
-  SKINS="Estuary"
-
-# Default Skin (Estuary)
-  SKIN_DEFAULT="Estuary"
-
-# install extra subtitle Fonts for KODI (yes / no)
-  KODI_EXTRA_FONTS="yes"
-
 # build and install PulseAudio support (yes / no)
-  PULSEAUDIO_SUPPORT="yes"
-
-# build and install eSpeak-NG support (yes / no)
-  ESPEAK_SUPPORT="no"
-
-# build and install with BluRay support (yes / no)
-  KODI_BLURAY_SUPPORT="yes"
-
-# build and install with BD+ support
-# (BD+ decryption support in KODI) (yes / no)
-  BLURAY_BDPLUS_SUPPORT="yes"
-
-# build and install with AACS support
-# (BD decryption support in KODI) (yes / no)
-  BLURAY_AACS_SUPPORT="yes"
-
-# build and install with DVDCSS support
-# (DVD decryption support in KODI) (yes / no)
-  KODI_DVDCSS_SUPPORT="yes"
+  PULSEAUDIO_SUPPORT="no"
 
 # build and install bluetooth support (yes / no)
   BLUETOOTH_SUPPORT="yes"
 
-# build and install with KODI webfrontend (yes / no)
-  KODI_WEBSERVER_SUPPORT="yes"
-
 # build and install Avahi (Zeroconf) daemon (yes / no)
   AVAHI_DAEMON="yes"
-
-# build with UPnP support (yes / no)
-  KODI_UPNP_SUPPORT="yes"
-
-# build with MySQL support (mariadb / none)
-  KODI_MYSQL_SUPPORT="mariadb"
-
-# build xbmc with optical drive support (yes / no)
-  KODI_OPTICAL_SUPPORT="yes"
-
-# build with AirPlay support (stream videos from iDevices to KODI) (yes / no)
-  KODI_AIRPLAY_SUPPORT="yes"
-
-# build with AirTunes support (stream music from iDevices to KODI) (yes / no)
-  KODI_AIRTUNES_SUPPORT="yes"
-
-# build with libnfs support (mounting nfs shares with KODI) (yes / no)
-  KODI_NFS_SUPPORT="yes"
-
-# build with Samba Client support (mounting SAMBA shares with KODI) (yes / no)
-  KODI_SAMBA_SUPPORT="yes"
-
-
-### KODI ADDONS ###
-
-# Distribution Specific source location
-  DISTRO_MIRROR="http://sources.libreelec.tv/mirror"
-  DISTRO_SRC="http://sources.libreelec.tv/$LIBREELEC_VERSION"
-
-# Addon Server Url
-  ADDON_SERVER_URL="https://addons.libreelec.tv"
-
-# set the default addon project
-  ADDON_PROJECT="${DEVICE:-$PROJECT}"
-
-# Settings package name - blank if not required
-  DISTRO_PKG_SETTINGS="LibreELEC-settings"
-  DISTRO_PKG_SETTINGS_ID="service.libreelec.settings"
-
-
-### ADDITIONAL PROGRAMS / FUNCTIONS ###
 
 # Testpackages for development (yes / no)
   TESTING="no"
@@ -224,9 +146,6 @@
 
 # IR remote keymaps supported in default config
   IR_REMOTE_KEYMAPS="rc6_mce xbox_360 xbox_one"
-
-# build and install Joystick support (yes / no)
-  JOYSTICK_SUPPORT="yes"
 
 # build and install CEC adapter support (yes / no)
   CEC_SUPPORT="yes"
