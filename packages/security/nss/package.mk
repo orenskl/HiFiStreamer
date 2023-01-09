@@ -3,8 +3,8 @@
 # Copyright (C) 2019-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="nss"
-PKG_VERSION="3.86"
-PKG_SHA256="8b5a2e9e3d632a78ad4d9c8d2ea502d2790d7a8e7b1986d173107232eca27432"
+PKG_VERSION="3.60.1"
+PKG_SHA256="696b2abca0f76848484d82fd614b0020966f1e97cd8902f1ec28bbeb301a22fb"
 PKG_LICENSE="Mozilla Public License"
 PKG_SITE="http://ftp.mozilla.org/"
 PKG_URL="https://ftp.mozilla.org/pub/security/nss/releases/NSS_${PKG_VERSION//./_}_RTM/src/nss-${PKG_VERSION}-with-nspr-$(get_pkg_version nspr).tar.gz"
@@ -47,13 +47,10 @@ make_target() {
   local TARGET_USE_64=""
   [ "${TARGET_ARCH}" = "x86_64" -o "${TARGET_ARCH}" = "aarch64" ] && TARGET_USE_64="USE_64=1"
 
-  local TARGET_x86_64=""
-  [ "${TARGET_ARCH}" != "x86_64" ] && TARGET_x86_64="NSS_DISABLE_AVX2=1"
-
-  make ${TARGET_x86_64} clean || true
+  make clean || true
   rm -rf ${PKG_BUILD}/dist
 
-  make BUILD_OPT=1 ${TARGET_USE_64} ${TARGET_x86_64} \
+  make BUILD_OPT=1 ${TARGET_USE_64} \
      NSS_USE_SYSTEM_SQLITE=1 \
      NSPR_INCLUDE_DIR=${SYSROOT_PREFIX}/usr/include/nspr \
      NSS_USE_SYSTEM_SQLITE=1 \

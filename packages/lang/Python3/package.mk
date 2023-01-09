@@ -3,17 +3,17 @@
 
 PKG_NAME="Python3"
 # When changing PKG_VERSION remember to sync PKG_PYTHON_VERSION!
-PKG_VERSION="3.11.1"
-PKG_SHA256="85879192f2cffd56cb16c092905949ebf3e5e394b7f764723529637901dfb58f"
+PKG_VERSION="3.8.9"
+PKG_SHA256="5e391f3ec45da2954419cab0beaefd8be38895ea5ce33577c3ec14940c4b9572"
 PKG_LICENSE="OSS"
-PKG_SITE="https://www.python.org/"
-PKG_URL="https://www.python.org/ftp/python/${PKG_VERSION}/${PKG_NAME::-1}-${PKG_VERSION}.tar.xz"
-PKG_DEPENDS_HOST="zlib:host bzip2:host libffi:host util-linux:host xz:host autoconf-archive:host"
+PKG_SITE="http://www.python.org/"
+PKG_URL="http://www.python.org/ftp/python/${PKG_VERSION}/${PKG_NAME::-1}-${PKG_VERSION}.tar.xz"
+PKG_DEPENDS_HOST="zlib:host bzip2:host libffi:host util-linux:host xz:host"
 PKG_DEPENDS_TARGET="toolchain Python3:host sqlite expat zlib bzip2 xz openssl libffi readline ncurses util-linux"
 PKG_LONGDESC="Python3 is an interpreted object-oriented programming language."
 PKG_TOOLCHAIN="autotools"
 
-PKG_PYTHON_VERSION="python3.11"
+PKG_PYTHON_VERSION="python3.8"
 
 PKG_PY_DISABLED_MODULES="_tkinter nis gdbm bsddb ossaudiodev"
 
@@ -34,7 +34,7 @@ PKG_CONFIGURE_OPTS_HOST="ac_cv_prog_HAS_HG=/bin/false
                          --disable-curses
                          --disable-pydoc
                          --disable-test-modules
-                         --disable-lib2to3
+                         --enable-lib2to3
                          --disable-idle3
                          --without-cxx-main
                          --with-expat=builtin
@@ -72,7 +72,7 @@ PKG_CONFIGURE_OPTS_TARGET="ac_cv_prog_HAS_HG=/bin/false
                            --enable-curses
                            --disable-pydoc
                            --disable-test-modules
-                           --disable-lib2to3
+                           --enable-lib2to3
                            --disable-idle3
                            --without-cxx-main
                            --with-expat=system
@@ -82,7 +82,6 @@ PKG_CONFIGURE_OPTS_TARGET="ac_cv_prog_HAS_HG=/bin/false
                            --without-pymalloc
                            --without-ensurepip
                            --enable-ipv6
-                           --with-build-python=${TOOLCHAIN}/bin/python
 "
 
 pre_configure_host() {

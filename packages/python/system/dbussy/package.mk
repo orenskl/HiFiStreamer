@@ -2,11 +2,11 @@
 # Copyright (C) 2020-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="dbussy"
-PKG_VERSION="691a8a8a1914416b7ea1545fb931d74f2e381f09"
-PKG_SHA256="857104ef2fd1978323d7c87b32c753d2d178b79adbd13f52cea23511f5195ded"
+PKG_VERSION="1.3"
+PKG_SHA256="30a96caddcbbe7ef9e4f506c01c2d19f529cdaae6d3dac759c103b20e49641fe"
 PKG_LICENSE="LGPLv2.1+"
 PKG_SITE="https://gitlab.com/ldo/dbussy"
-PKG_URL="https://github.com/ldo/${PKG_NAME}/archive/${PKG_VERSION}.tar.gz"
+PKG_URL="https://github.com/ldo/${PKG_NAME}/archive/v${PKG_VERSION}.tar.gz"
 PKG_DEPENDS_TARGET="toolchain Python3 dbus"
 PKG_LONGDESC="DBussy is a wrapper around libdbus, written in pure Python"
 PKG_TOOLCHAIN="manual"

@@ -12,14 +12,14 @@ index 5a336df..2d2029b 100644
 --- a/Makefile.in
 +++ b/Makefile.in
 @@ -701,7 +701,7 @@ update_mans = \
- update_mans = \
    $(AM_V_GEN): \
      && $(MKDIR_P) doc \
--    && ./pre-inst-env $(PERL) $(srcdir)/doc/help2man --output=$@
-+    && ./pre-inst-env $(PERL) $(srcdir)/doc/help2man --output=$@ --no-discard-stderr
+     && $(extend_PATH) \
+-    && $(PERL) $(srcdir)/doc/help2man --output=$@
++    && $(PERL) $(srcdir)/doc/help2man --output=$@ --no-discard-stderr
  
- checklinkx = $(top_srcdir)/contrib/checklinkx
- # that 4-second sleep seems to be what gnu.org likes.
+ amhello_sources = \
+   doc/amhello/configure.ac \
 -- 
 1.7.2.5
 

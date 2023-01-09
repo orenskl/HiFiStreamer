@@ -19,14 +19,14 @@ if [ "${BOOTLOADER}" = "u-boot" -a -n "${DEVICE}" ]; then
   fi
 fi
 
+show_config
+
 ${SCRIPTS}/checkdeps
 
 # Setup both toolchain cmake configs to avoid potentially racy behaviour later.
 # Use a fork for host to isolate any variable modifications.
 ( setup_toolchain host )
 setup_toolchain target
-
-show_config
 
 function do_mkimage() {
   # Variables used in mkimage script must be passed
@@ -123,7 +123,6 @@ chmod +x ${FAKEROOT_SCRIPT} # make ${FAKEROOT_SCRIPT} executable
 echo "chown -R 0:0 ${INSTALL}" >> ${FAKEROOT_SCRIPT}
 
 # Clean old install dirs
-rm -rf ${BUILD}/qa_checks/general
 rm -rf ${INSTALL}
 rm -rf ${STAMPS_INSTALL}
 mkdir -p ${INSTALL}
@@ -188,7 +187,7 @@ if [ -d "${PROJECT_DIR}/${PROJECT}/filesystem" ]; then
   # Install project specific systemd services
   for service in ${PROJECT_DIR}/${PROJECT}/filesystem/usr/lib/systemd/system/*.service; do
     if [ -f "${service}" ]; then
-      enable_service ${service##*/}
+      enable_service $(basename ${service})
     fi
   done
 fi
@@ -199,17 +198,9 @@ if [ -n "${DEVICE}" -a -d "${PROJECT_DIR}/${PROJECT}/devices/${DEVICE}/filesyste
   # Install device specific systemd services
   for service in ${PROJECT_DIR}/${PROJECT}/devices/${DEVICE}/filesystem/usr/lib/systemd/system/*.service; do
     if [ -f "${service}" ]; then
-      enable_service ${service##*/}
+      enable_service $(basename ${service})
     fi
   done
-fi
-
-# Replace placeholders with values in install script to eMMC
-if [ -f ${INSTALL}/usr/bin/install2emmc ]; then
-  sed -e "s%@SYSTEM_SIZE@%${SYSTEM_SIZE}%g" \
-      -i ${INSTALL}/usr/bin/install2emmc
-  sed -e "s%@DISTRONAME@%${DISTRONAME}%g" \
-      -i ${INSTALL}/usr/bin/install2emmc
 fi
 
 # Run depmod for base overlay modules
@@ -476,8 +467,3 @@ if [ "${1}" = "release" -o "${1}" = "mkimage" -o "${1}" = "noobs" ]; then
     rm -rf ${RELEASE_DIR}
   fi
 fi
-
-if [ -n "$(ls -1 ${BUILD}/qa_checks/ 2>/dev/null)" ]; then
-  log_qa_check "qa_issues" "QA issues present, please fix!\n$(find ${BUILD}/qa_checks/* -type f ! -name qa_issues)\n"
-fi
-

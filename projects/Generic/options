@@ -6,16 +6,12 @@
   # generated code.
     case $TARGET_ARCH in
       x86_64)
-        # Valid TARGET_CPU values as defined at:
-        # https://gcc.gnu.org/onlinedocs/gcc/x86-Options.html
-        # x86-64       A generic CPU with 64-bit extensions.
+        # (AMD CPUs)    k8 k8-sse3 opteron opteron-sse3 athlon64 athlon64-sse3
+        #               athlon-fx amdfam10 barcelona
+        # (Intel CPUs)  atom core2 nocona
         #
-        # x86-64-v2    e.g. AMD CPU - Bulldozer - (bdver1)
-        #                   Intel CPU - Nehalem - (nehalem)
-        #
-        # x86-64-v3    e.g. AMD CPU - Bulldozer GEN4 - (bdver4)
-        #                   Intel CPU - Haswell - (haswell)
         TARGET_CPU="x86-64"
+        TARGET_FEATURES="64bit"
         ;;
     esac
 
@@ -51,6 +47,21 @@
 # setup project defaults
 ################################################################################
 
+  # build and install ALSA Audio support (yes / no)
+    ALSA_SUPPORT="yes"
+
+  # OpenGL(X) implementation to use (no / mesa)
+    OPENGL="mesa"
+
+  # OpenGL-ES implementation to use (no / bcm2835-driver / gpu-viv-bin-mx6q)
+    OPENGLES="no"
+
+  # Displayserver to use (x11 / no)
+    DISPLAYSERVER="x11"
+
+  # KODI Player implementation to use (default / bcm2835-driver / libfslvpuwrap)
+    KODIPLAYER_DRIVER="default"
+
   # additional Firmware to use (dvb-firmware, misc-firmware, wlan-firmware)
   # Space separated list is supported,
   # e.g. FIRMWARE="dvb-firmware misc-firmware wlan-firmware"
@@ -68,7 +79,7 @@
   # driver addons to install:
   # for a list of additional drivers see packages/linux-driver-addons
   # Space separated list is supported,
-    DRIVER_ADDONS="crazycat digital_devices dvb-latest"
+    DRIVER_ADDONS="dvb-latest"
 
   # Default size of the ova image, in MB, eg. 4096
     OVA_SIZE="4096"

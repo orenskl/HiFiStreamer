@@ -3,84 +3,118 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="xorg-server"
-PKG_VERSION="21.1.6"
-PKG_SHA256="1eb86ed674d042b6c8b1f9135e59395cbbca35ed551b122f73a7d8bb3bb22484"
+PKG_VERSION="1.20.11"
+PKG_SHA256="914c796e3ffabe1af48071d40ccc85e92117c97a9082ed1df29e4d64e3c34c49"
 PKG_LICENSE="OSS"
 PKG_SITE="http://www.X.org"
-PKG_URL="https://www.x.org/releases/individual/xserver/${PKG_NAME}-${PKG_VERSION}.tar.xz"
-PKG_DEPENDS_TARGET="toolchain util-macros font-util xorgproto libpciaccess libX11 libXfont2 libXinerama libxcvt libxshmfence libxkbfile libdrm openssl freetype pixman systemd xorg-launch-helper"
+PKG_URL="http://xorg.freedesktop.org/archive/individual/xserver/${PKG_NAME}-${PKG_VERSION}.tar.bz2"
+PKG_DEPENDS_TARGET="toolchain util-macros font-util xorgproto libpciaccess libX11 libXfont2 libXinerama libxshmfence libxkbfile libdrm openssl freetype pixman systemd xorg-launch-helper"
 PKG_NEED_UNPACK="$(get_pkg_directory xf86-video-nvidia) $(get_pkg_directory xf86-video-nvidia-legacy)"
-PKG_LONGDESC="X.Org Server is the free and open-source implementation of the X Window System display server."
+PKG_LONGDESC="Xorg is a full featured X server running on Intel x86 hardware."
+PKG_TOOLCHAIN="autotools"
 
 get_graphicdrivers
 
-PKG_MESON_OPTS_TARGET="-Dxorg=true \
-                       -Dxephyr=false \
-                       -Dxnest=false \
-                       -Dxvfb=false \
-                       -Dxwin=false \
-                       -Dxquartz=false \
-                       -Dbuilder_addr=${BUILDER_NAME} \
-                       -Dlog_dir="/var/log" \
-                       -Dmodule_dir=${XORG_PATH_MODULES} \
-                       -Ddefault_font_path="/usr/share/fonts/misc,built-ins" \
-                       -Dxdmcp=false \
-                       -Dxdm-auth-1=false \
-                       -Dsecure-rpc=false \
-                       -Dipv6=false \
-                       -Dinput_thread=true \
-                       -Dxkb_dir=${XORG_PATH_XKB} \
-                       -Dxkb_output_dir="/var/cache/xkb" \
-                       -Dvendor_name="LibreELEC" \
-                       -Dvendor_name_short="LE" \
-                       -Dvendor_web="https://libreelec.tv/" \
-                       -Dlisten_tcp=false \
-                       -Dlisten_unix=true \
-                       -Dlisten_local=false \
-                       -Dint10=x86emu \
-                       -Dpciaccess=true \
-                       -Dudev=true \
-                       -Dudev_kms=true \
-                       -Dhal=false \
-                       -Dsystemd_logind=false \
-                       -Dvgahw=true \
-                       -Ddpms=true \
-                       -Dxf86bigfont=false \
-                       -Dscreensaver=false \
-                       -Dxres=true \
-                       -Dxace=false \
-                       -Dxselinux=false \
-                       -Dxinerama=true \
-                       -Dxcsecurity=false \
-                       -Dxv=true \
-                       -Dxvmc=false \
-                       -Ddga=true \
-                       -Dlinux_apm=false \
-                       -Dlinux_acpi=false \
-                       -Dmitshm=true \
-                       -Dsha1="libcrypto" \
-                       -Ddri2=true \
-                       -Ddri3=true \
-                       -Ddrm=true \
-                       -Dxpbproxy=false \
-                       -Dlibunwind=false \
-                       -Ddocs=false \
-                       -Ddevel-docs=false"
+if [ "${COMPOSITE_SUPPORT}" = "yes" ]; then
+  PKG_DEPENDS_TARGET+=" libXcomposite"
+  XORG_COMPOSITE="--enable-composite"
+else
+  XORG_COMPOSITE="--disable-composite"
+fi
 
 if [ ! "${OPENGL}" = "no" ]; then
   PKG_DEPENDS_TARGET+=" ${OPENGL} libepoxy"
-  PKG_MESON_OPTS_TARGET+=" -Dglx=true \
-                           -Ddri1=true \
-                           -Dglamor=true"
+  XORG_MESA="--enable-glx --enable-dri --enable-glamor"
 else
-  PKG_MESON_OPTS_TARGET+=" -Dglx=false \
-                           -Ddri1=false \
-                           -Dglamor=false"
+  XORG_MESA="--disable-glx --disable-dri --disable-glamor"
 fi
 
-if [ "${COMPOSITE_SUPPORT}" = "yes" ]; then
-  PKG_DEPENDS_TARGET+=" libXcomposite"
-fi
+PKG_CONFIGURE_OPTS_TARGET="--disable-debug \
+                           --disable-silent-rules \
+                           --disable-strict-compilation \
+                           --enable-largefile \
+                           --enable-visibility \
+                           --disable-unit-tests \
+                           --disable-sparkle \
+                           --disable-xselinux \
+                           ${XORG_COMPOSITE} \
+                           --enable-mitshm \
+                           --enable-xres \
+                           --enable-record \
+                           --enable-xv \
+                           --disable-xvmc \
+                           --enable-dga \
+                           --disable-screensaver \
+                           --disable-xdmcp \
+                           --disable-xdm-auth-1 \
+                           ${XORG_MESA} \
+                           --enable-dri2 \
+                           --enable-dri3 \
+                           --enable-present \
+                           --enable-xinerama \
+                           --enable-xf86vidmode \
+                           --disable-xace \
+                           --disable-xselinux \
+                           --disable-xcsecurity \
+                           --enable-dbe \
+                           --disable-xf86bigfont \
+                           --enable-dpms \
+                           --enable-config-udev \
+                           --enable-config-udev-kms \
+                           --disable-config-hal \
+                           --disable-config-wscons \
+                           --enable-xfree86-utils \
+                           --enable-vgahw \
+                           --enable-vbe \
+                           --enable-int10-module \
+                           --disable-windowswm \
+                           --enable-libdrm \
+                           --enable-clientids \
+                           --enable-pciaccess \
+                           --disable-linux-acpi \
+                           --disable-linux-apm \
+                           --disable-systemd-logind \
+                           --enable-xorg \
+                           --disable-dmx \
+                           --disable-xvfb \
+                           --disable-xnest \
+                           --disable-xquartz \
+                           --disable-standalone-xpbproxy \
+                           --disable-xwin \
+                           --disable-kdrive \
+                           --disable-xephyr \
+                           --disable-libunwind \
+                           --enable-xshmfence \
+                           --disable-install-setuid \
+                           --enable-unix-transport \
+                           --disable-tcp-transport \
+                           --disable-ipv6 \
+                           --disable-local-transport \
+                           --disable-secure-rpc \
+                           --enable-input-thread \
+                           --enable-xtrans-send-fds \
+                           --disable-docs \
+                           --disable-devel-docs \
+                           --with-int10=x86emu \
+                           --with-gnu-ld \
+                           --with-sha1=libcrypto \
+                           --without-systemd-daemon \
+                           --with-os-vendor=LibreELEC.tv \
+                           --with-module-dir=${XORG_PATH_MODULES} \
+                           --with-xkb-path=${XORG_PATH_XKB} \
+                           --with-xkb-output=/var/cache/xkb \
+                           --with-log-dir=/var/log \
+                           --with-fontrootdir=/usr/share/fonts \
+                           --with-default-font-path=/usr/share/fonts/misc,built-ins \
+                           --with-serverconfig-path=/usr/lib/xserver \
+                           --without-xmlto \
+                           --without-fop"
+
+pre_configure_target() {
+# hack to prevent a build error
+  CFLAGS=$(echo ${CFLAGS} | sed -e "s|-O3|-O2|" -e "s|-Ofast|-O2|")
+  LDFLAGS=$(echo ${LDFLAGS} | sed -e "s|-O3|-O2|" -e "s|-Ofast|-O2|")
+}
 
 post_makeinstall_target() {
   rm -rf ${INSTALL}/var/cache/xkb

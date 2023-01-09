@@ -1,6 +1,7 @@
 [Unit]
 Description=Configure eth0 MAC address
-Requisite=sys-subsystem-net-devices-eth0.device
+BindsTo=sys-subsystem-net-devices-eth0.device
+After=sys-subsystem-net-devices-eth0.device
 Before=connman.service
 
 [Service]

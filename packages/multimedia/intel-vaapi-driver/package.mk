@@ -11,16 +11,17 @@ PKG_SITE="https://01.org/linuxmedia"
 PKG_URL="https://github.com/intel/intel-vaapi-driver/archive/${PKG_VERSION}.tar.gz"
 PKG_DEPENDS_TARGET="toolchain libva libdrm"
 PKG_LONGDESC="intel-vaapi-driver: VA-API user mode driver for Intel GEN Graphics family"
+PKG_TOOLCHAIN="meson"
 
 if [ "${DISPLAYSERVER}" = "x11" ]; then
   DISPLAYSERVER_LIBVA="-Dwith_x11=yes -Dwith_wayland=no"
-elif [ "${DISPLAYSERVER}" = "wl" ]; then
+elif [ "${DISPLAYSERVER}" = "weston" ]; then
   DISPLAYSERVER_LIBVA="-Dwith_x11=no -Dwith_wayland=yes"
 else
   DISPLAYSERVER_LIBVA="-Dwith_x11=no -Dwith_wayland=no"
 fi
 
-PKG_MESON_OPTS_TARGET="-Denable_hybrid_codec=false \
+PKG_MESON_OPTS_TARGET="-Denable_hybrid_code=false \
                        -Denable_tests=false \
                        ${DISPLAYSERVER_LIBVA}"
 

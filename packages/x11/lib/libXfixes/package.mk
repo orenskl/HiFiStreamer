@@ -3,15 +3,13 @@
 # Copyright (C) 2018-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="libXfixes"
-PKG_VERSION="6.0.0"
-PKG_SHA256="a7c1a24da53e0b46cac5aea79094b4b2257321c621b258729bc3139149245b4c"
+PKG_VERSION="5.0.3"
+PKG_SHA256="de1cd33aff226e08cefd0e6759341c2c8e8c9faf8ce9ac6ec38d43e287b22ad6"
 PKG_LICENSE="OSS"
-PKG_SITE="https://www.X.org"
-PKG_URL="https://xorg.freedesktop.org/archive/individual/lib/${PKG_NAME}-${PKG_VERSION}.tar.bz2"
+PKG_SITE="http://www.X.org"
+PKG_URL="http://xorg.freedesktop.org/archive/individual/lib/${PKG_NAME}-${PKG_VERSION}.tar.bz2"
 PKG_DEPENDS_TARGET="toolchain util-macros libX11"
 PKG_LONGDESC="X Fixes Library"
 PKG_BUILD_FLAGS="+pic"
 
-post_configure_target() {
-  libtool_remove_rpath libtool
-}
+PKG_CONFIGURE_OPTS_TARGET="--enable-static --disable-shared"
