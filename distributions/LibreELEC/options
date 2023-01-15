@@ -68,6 +68,10 @@
 # debug tty path
   DEBUG_TTY="/dev/tty3"
 
+### STREAMER SETTINGS ###
+# build and install the streamer software (yes / no)
+  STREAMER="yes"
+
 # build and install PulseAudio support (yes / no)
   PULSEAUDIO_SUPPORT="no"
 

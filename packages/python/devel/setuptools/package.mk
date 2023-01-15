@@ -9,6 +9,7 @@ PKG_LICENSE="OSS"
 PKG_SITE="https://pypi.org/project/setuptools"
 PKG_URL="https://github.com/pypa/setuptools/archive/v${PKG_VERSION}.tar.gz"
 PKG_DEPENDS_HOST="Python3:host"
+PKG_DEPENDS_TARGET="Python3 distutilscross:host"
 PKG_LONGDESC="Replaces Setuptools as the standard method for working with Python module distributions."
 PKG_TOOLCHAIN="manual"
 
@@ -18,4 +19,22 @@ make_host() {
 
 makeinstall_host() {
   exec_thread_safe python3 setup.py install --prefix=${TOOLCHAIN}
+}
+
+pre_make_target() {
+  export PYTHONXCPREFIX="${SYSROOT_PREFIX}/usr"
+}
+
+make_target() {
+  python3 bootstrap.py
+}
+
+makeinstall_target() {
+  python3 setup.py install --root=${INSTALL} --prefix=/usr
+}
+
+post_makeinstall_target() {
+  python_remove_source
+
+  rm -rf ${INSTALL}/usr/lib/python*/site-packages/*/tests
 }

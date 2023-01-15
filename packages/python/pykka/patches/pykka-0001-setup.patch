@@ -1,0 +1,39 @@
+diff -ruN pykka-3.1.1/setup.py pykka-3.1.1.new/setup.py
+--- pykka-3.1.1/setup.py	1970-01-01 02:00:00.000000000 +0200
++++ pykka-3.1.1.new/setup.py	2023-01-11 09:25:33.026264199 +0200
+@@ -0,0 +1,35 @@
++# -*- coding: utf-8 -*-
++from setuptools import setup
++
++package_dir = \
++{'': 'src'}
++
++packages = \
++['pykka']
++
++package_data = \
++{'': ['*']}
++
++extras_require = \
++{':python_version < "3.8"': ['importlib_metadata>=1.6']}
++
++setup_kwargs = {
++    'name': 'pykka',
++    'version': '3.1.1',
++    'description': 'Pykka is a Python implementation of the actor model',
++    'long_description': '# &#x1F300; Pykka\n\n_Pykka makes it easier to build concurrent applications._\n\n[![CI](https://img.shields.io/github/workflow/status/jodal/pykka/CI)](https://github.com/jodal/pykka/actions?workflow=CI)\n[![Docs](https://img.shields.io/readthedocs/pykka)](https://pykka.readthedocs.io/en/latest/)\n[![Coverage](https://img.shields.io/codecov/c/gh/jodal/pykka)](https://codecov.io/gh/jodal/pykka)\n[![PyPI](https://img.shields.io/pypi/v/pykka)](https://pypi.org/project/pykka/)\n\n---\n\nPykka is a Python implementation of the\n[actor model](https://en.wikipedia.org/wiki/Actor_model).\nThe actor model introduces some simple rules to control\nthe sharing of state and cooperation between execution units,\nwhich makes it easier to build concurrent applications.\n\nFor a quickstart guide and a complete API reference,\nsee the [documentation](https://pykka.readthedocs.io/).\n\n## Installation\n\nPykka requires Python 3.7 or newer.\n\nPykka is available from [PyPI](https://pypi.org/project/pykka/):\n\n```\npython3 -m pip install pykka\n```\n\n## Project resources\n\n- [Documentation](https://pykka.readthedocs.io/)\n- [Source code](https://github.com/jodal/pykka)\n- [Releases](https://github.com/jodal/pykka/releases)\n- [Issue tracker](https://github.com/jodal/pykka/issues)\n- [Contributors](https://github.com/jodal/pykka/graphs/contributors)\n- [Users](https://github.com/jodal/pykka/wiki/Users)\n\n## License\n\nPykka is copyright 2010-2022 Stein Magnus Jodal and contributors.\nPykka is licensed under the\n[Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0).\n',
++    'author': 'Stein Magnus Jodal',
++    'author_email': 'stein.magnus@jodal.no',
++    'maintainer': 'None',
++    'maintainer_email': 'None',
++    'url': 'https://github.com/jodal/pykka',
++    'package_dir': package_dir,
++    'packages': packages,
++    'package_data': package_data,
++    'extras_require': extras_require,
++    'python_requires': '>=3.7.0,<4.0.0',
++}
++
++
++setup(**setup_kwargs)
++

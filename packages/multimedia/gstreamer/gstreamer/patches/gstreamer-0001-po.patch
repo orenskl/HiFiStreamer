@@ -1,0 +1,19 @@
+diff -ruN gstreamer-1.16.3/Makefile.am gstreamer-1.16.3.new/Makefile.am
+--- gstreamer-1.16.3/Makefile.am	2020-10-21 16:41:25.000000000 +0300
++++ gstreamer-1.16.3.new/Makefile.am	2023-01-13 20:14:56.681684784 +0200
+@@ -9,7 +9,6 @@
+ SUBDIRS = pkgconfig \
+ 	gst libs plugins tests \
+ 	docs \
+-	po \
+ 	m4 \
+ 	common \
+ 	data
+@@ -22,7 +21,6 @@
+ DIST_SUBDIRS = pkgconfig \
+ 	gst libs plugins tools tests \
+ 	docs \
+-	po \
+ 	m4 \
+ 	common \
+ 	data

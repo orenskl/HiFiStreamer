@@ -11,6 +11,9 @@ PKG_LONGDESC="Root package used to build and create complete image"
 # Graphic support
 [ ! "${DISPLAYSERVER}" = "no" ] && PKG_DEPENDS_TARGET+=" ${DISPLAYSERVER}"
 
+# Streamer support
+[ ! "${STREAMER}" = "no" ] && PKG_DEPENDS_TARGET+=" streamer"
+
 # Sound support
 [ "${ALSA_SUPPORT}" = "yes" ] && PKG_DEPENDS_TARGET+=" alsa"
 
