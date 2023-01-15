@@ -81,6 +81,8 @@
 # build and install Avahi (Zeroconf) daemon (yes / no)
   AVAHI_DAEMON="yes"
 
+  DISTRO_SRC="http://sources.libreelec.tv/devel"
+
 # Testpackages for development (yes / no)
   TESTING="no"
 
