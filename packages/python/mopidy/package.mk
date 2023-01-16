@@ -27,4 +27,16 @@ post_makeinstall_target() {
   python_remove_source
 
   rm -rf ${INSTALL}/usr/lib/python*/site-packages/*/tests
+
+  # Copy config files
+  mkdir -p ${INSTALL}/usr/share/mopidy/conf.d
+    cp ${PKG_DIR}/default.d/*.conf ${INSTALL}/usr/share/mopidy/conf.d
+
+  mkdir -p ${INSTALL}/usr/config/mopidy
+    cp -PR ${PKG_DIR}/config/*.conf ${INSTALL}/usr/config/mopidy
+
+}
+
+post_install() {
+  enable_service mopidy.service
 }
