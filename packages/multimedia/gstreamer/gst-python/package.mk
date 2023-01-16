@@ -7,4 +7,4 @@ PKG_URL="https://gitlab.freedesktop.org/gstreamer/gst-python/-/archive/${PKG_VER
 PKG_DEPENDS_TARGET="toolchain pygobject"
 PKG_LONGDESC="GStreamer Python binding overrides"
 
-PKG_MESON_OPTS_TARGET="-Dlibpython-dir=${TOOLCHAIN}/lib"
+PKG_MESON_OPTS_TARGET="-Dlibpython-dir=/usr/lib"
