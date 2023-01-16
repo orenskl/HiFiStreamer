@@ -26,7 +26,6 @@ pre_configure_target() {
                          -Dgio-typefinder=disabled \
                          -Doverlaycomposition=disabled \
                          -Dpbtypes=disabled \
-                         -Dplayback=disabled \
                          -Drawparse=enabled \
                          -Dsubparse=enabled \
                          -Dtcp=disabled \
@@ -34,8 +33,6 @@ pre_configure_target() {
                          -Dvideoconvertscale=disabled \
                          -Dvideorate=disabled \
                          -Dvideotestsrc=disabled \
-                         -Dvolume=disabled \
-                         -Dalsa=disabled \
                          -Dcdparanoia=disabled \
                          -Dlibvisual=disabled \
                          -Dogg=disabled \
