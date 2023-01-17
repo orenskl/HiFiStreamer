@@ -6,7 +6,7 @@ HiFiStreamer is an attempt to setup and build a full Audiophile network streamin
 
 This project is based on the [LibreELEC](https://libreelec.tv) JeOS disribution.
 
-# Building and Installing
+**Building and Installing**
 
 To build HiFiStreamer you will need a Ubuntu 20.04 build machine, clone the repo and run :
 
