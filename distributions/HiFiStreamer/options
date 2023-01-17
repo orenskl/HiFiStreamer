@@ -1,26 +1,26 @@
 ### DISTRO INFORMATION ###
 
 # Name of the Distro to build (full name, without special characters)
-  DISTRONAME="LibreELEC"
+  DISTRONAME="HiFiStreamer"
 
 # short project description
-  DESCRIPTION="LibreELEC is a fast and user-friendly Kodi Entertainment Center distribution."
+  DESCRIPTION="HiFiStreamer is a Bit Perfect network audio streamer."
 
 
 ### USER INTERFACE SETTINGS ###
 
 # Welcome Message for e.g. SSH Server (up to 5 Lines)
   GREETING0="##############################################"
-  GREETING1="#                 LibreELEC                  #"
-  GREETING2="#            https://libreelec.tv            #"
+  GREETING1="#                 HiFiStreame                #"
+  GREETING2="#                                            #"
   GREETING3="##############################################"
   GREETING4=""
 
 # Root password to integrate in the target system
-  ROOT_PASSWORD="libreelec"
+  ROOT_PASSWORD="hifistreamer"
 
 # Partition labels for USB/SD installation media
-  DISTRO_BOOTLABEL="LIBREELEC"
+  DISTRO_BOOTLABEL="HIFISTREAMER"
   DISTRO_DISKLABEL="STORAGE"
 
 
