@@ -7,7 +7,7 @@ PKG_SHA256="9f02678b0bbbcc9eff107d3bd89d83ce92fec2154cd607c7c8bd34dc7fee491c"
 PKG_LICENSE="GPL-2.1-or-later"
 PKG_SITE="https://gstreamer.freedesktop.org/modules/gst-plugins-base.html"
 PKG_URL="https://gstreamer.freedesktop.org/src/gst-plugins-base/${PKG_NAME}-${PKG_VERSION}.tar.xz"
-PKG_DEPENDS_TARGET="toolchain gstreamer"
+PKG_DEPENDS_TARGET="toolchain gstreamer alsa-utils alsa-lib"
 PKG_LONGDESC="Base GStreamer plugins and helper libraries"
 PKG_BUILD_FLAGS="-gold"
 
