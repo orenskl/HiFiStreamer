@@ -123,7 +123,7 @@ SAY installer: permanently install ${DISTRO} to HDD/SSD
 SAY live: boot ${DISTRO} using RAM for temporary storage
 SAY run: boot ${DISTRO} using this USB memory device for storage
 SAY
-DEFAULT live
+DEFAULT installer
 TIMEOUT 50
 PROMPT 1
 
@@ -133,7 +133,7 @@ LABEL installer
 
 LABEL live
   KERNEL /${KERNEL_NAME}
-  APPEND boot=UUID=${UUID_SYSTEM} live vga=current textmode
+  APPEND boot=UUID=${UUID_SYSTEM} live quit vga=current
 
 LABEL run
   KERNEL /${KERNEL_NAME}
