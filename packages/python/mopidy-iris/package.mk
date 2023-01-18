@@ -11,6 +11,14 @@ PKG_DEPENDS_TARGET="Python3 setuptools mopidy"
 PKG_LONGDESC="Discover, explore and manage your music library across multiple sources with this beautiful web-based interface."
 PKG_TOOLCHAIN="manual"
 
+make_target() {
+  python3 setup.py build --cross-compile
+}
+
 makeinstall_target() {
   python3 setup.py install --root=${INSTALL} --prefix=/usr
+}
+
+post_makeinstall_target() {
+  python_remove_source
 }
