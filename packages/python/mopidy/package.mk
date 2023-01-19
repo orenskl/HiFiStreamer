@@ -7,7 +7,7 @@ PKG_SHA256="a06337cc2e425361fb312656b9480fdc3f7994b5d07bb05d9f56c02b393331a3"
 PKG_LICENSE="OSS"
 PKG_SITE="https://pypi.org/project/Mopidy/"
 PKG_URL="https://github.com/${PKG_NAME}/${PKG_NAME}/archive/refs/tags/v${PKG_VERSION}.tar.gz"
-PKG_DEPENDS_TARGET="toolchain Python3 setuptools:target distutilscross:host tornado requests pykka gstreamer gst-python gst-plugins-base"
+PKG_DEPENDS_TARGET="toolchain Python3 setuptools:target distutilscross:host tornado requests pykka gstreamer gst-python gst-plugins-base gst-plugins-good"
 PKG_LONGDESC="Mopidy is an extensible music server written in Python."
 PKG_TOOLCHAIN="manual"
 

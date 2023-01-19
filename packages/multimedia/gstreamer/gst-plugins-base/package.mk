@@ -29,7 +29,6 @@ pre_configure_target() {
                          -Drawparse=enabled \
                          -Dsubparse=enabled \
                          -Dtcp=disabled \
-                         -Dtypefind=disabled \
                          -Dvideoconvertscale=disabled \
                          -Dvideorate=disabled \
                          -Dvideotestsrc=disabled \

@@ -2,13 +2,14 @@
 Description=Mopidy music server
 After=avahi-daemon.service
 After=dbus.service
-After=network.target
+After=network-online.service
 After=nss-lookup.target
 After=remote-fs.target
 After=sound.target
+Wants=network-online.target
 
 [Service]
-ExecStartPre=/bin/mkdir -p /var/cache/mopidy
+ExecStartPre=/bin/mkdir -p /storage/.cache/mopidy
 ExecStart=python3 /usr/bin/mopidy --config /usr/share/mopidy/conf.d:/storage/.config/mopidy/mopidy.conf
 
 [Install]
