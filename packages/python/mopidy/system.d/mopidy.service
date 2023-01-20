@@ -10,6 +10,7 @@ Wants=network-online.target
 
 [Service]
 ExecStartPre=/bin/mkdir -p /storage/.cache/mopidy
+ExecStartPre=/bin/mkdir -p /storage/music
 ExecStart=python3 /usr/bin/mopidy --config /usr/share/mopidy/conf.d:/storage/.config/mopidy/mopidy.conf
 
 [Install]
