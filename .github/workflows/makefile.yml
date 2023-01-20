@@ -22,7 +22,7 @@ jobs:
       
     - name: Archive image
       uses: actions/upload-artifact@v3
-        with:
+      with:
           name: generic image
           path: target/*.img.gz
 
