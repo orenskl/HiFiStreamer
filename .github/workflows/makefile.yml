@@ -25,4 +25,5 @@ jobs:
       with:
           name: images
           path: target/*.img.gz
+          path: target/*.ova
 
