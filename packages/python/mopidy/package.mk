@@ -35,8 +35,12 @@ post_makeinstall_target() {
   mkdir -p ${INSTALL}/usr/config/mopidy
     cp -PR ${PKG_DIR}/config/*.conf ${INSTALL}/usr/config/mopidy
 
+  mkdir -p ${INSTALL}/usr/cache/hifistreamer
+  	cp ${PKG_DIR}/config/network_wait ${INSTALL}/usr/cache/hifistreamer
+
 }
 
 post_install() {
   enable_service mopidy.service
+  enable_service waitonnetwork.service
 }

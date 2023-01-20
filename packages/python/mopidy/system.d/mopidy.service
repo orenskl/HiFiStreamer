@@ -2,7 +2,7 @@
 Description=Mopidy music server
 After=avahi-daemon.service
 After=dbus.service
-After=network-online.service
+After=network-online.target
 After=nss-lookup.target
 After=remote-fs.target
 After=sound.target
