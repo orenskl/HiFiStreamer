@@ -29,6 +29,7 @@ PKG_MESON_OPTS_TARGET="-Dbackend-drm-screencast-vaapi=false \
                        -Dsimple-clients=egl \
                        -Dresize-pool=false \
                        -Dwcap-decode=false \
+                       -Dpipewire=false \
                        -Dtest-junit-xml=false"
 
 post_makeinstall_target() {

@@ -10,7 +10,6 @@ PKG_DEPENDS_TARGET+=" icu"
 PKG_LONGDESC="HarfBuzz with icu"
 PKG_DEPENDS_CONFIG="icu"
 PKG_DEPENDS_UNPACK+=" harfbuzz"
-PKG_BUILD_FLAGS="-sysroot"
 
 PKG_MESON_OPTS_TARGET="-Dbenchmark=disabled \
                        -Dcairo=enabled \

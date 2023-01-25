@@ -53,11 +53,11 @@
   # OpenGL(X) implementation to use (no / mesa)
     OPENGL="mesa"
 
-  # OpenGL-ES implementation to use (no / bcm2835-driver / gpu-viv-bin-mx6q)
-    OPENGLES="no"
+  # OpenGL-ES implementation to use (no / bcm2835-driver / gpu-viv-bin-mx6q / mesa)
+    OPENGLES="mesa"
 
-  # Displayserver to use (x11 / no)
-    DISPLAYSERVER="x11"
+  # Displayserver to use (x11 / weston / no)
+    DISPLAYSERVER="weston"
 
   # additional Firmware to use (dvb-firmware, misc-firmware, wlan-firmware)
   # Space separated list is supported,
