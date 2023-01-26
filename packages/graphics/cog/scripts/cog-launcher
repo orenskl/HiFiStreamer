@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# SPDX-License-Identifier: GPL-2.0
+# Copyright (C) 20232 Oren Sokoler
+
+# Wait for the Mopidy fronend to be available
+until $(/usr/bin/wget -q http://127.0.0.1:6680/iris -O /dev/null -o /dev/null); do
+	sleep 2
+done
+/usr/bin/cog http://127.0.0.1:6680/iris

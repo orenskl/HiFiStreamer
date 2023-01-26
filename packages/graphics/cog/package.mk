@@ -9,3 +9,11 @@ PKG_SITE="https://wpewebkit.org"
 PKG_URL="https://wpewebkit.org/releases/cog-${PKG_VERSION}.tar.xz"
 PKG_DEPENDS_TARGET="toolchain wpewebkit wpebackend-fdo libxkbcommon"
 PKG_LONGDESC="WPE launcher and webapp container"
+
+post_install() {
+
+  cp ${PKG_DIR}/scripts/cog-launcher ${INSTALL}/usr/bin
+  chmod +x ${INSTALL}/usr/bin/cog-launcher
+
+  enable_service cog.service
+}
