@@ -1,0 +1,11 @@
+diff -rNu cog-0.16.1.new/platform/wayland/meson.build cog-0.16.1/platform/wayland/meson.build
+--- cog-0.16.1.new/platform/wayland/meson.build	2022-10-18 14:44:33.000000000 +0300
++++ cog-0.16.1/platform/wayland/meson.build	2023-01-25 07:58:03.424841151 +0200
+@@ -9,6 +9,7 @@
+ wayland_platform_dependencies = [
+     cogcore_dep,
+     wpebackend_fdo_dep,
++    dependency('xkbcommon'),
+     dependency('cairo'),
+     dependency('egl'),
+     dependency('wayland-client'),
