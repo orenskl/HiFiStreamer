@@ -2,9 +2,9 @@ name: Build Image
 
 on:
   push:
-    branches: [ "dev" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "dev" ]
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -24,6 +24,5 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
           name: images
-          path: target/*.img.gz
-          path: target/*.ova
+          path: target/*.img.gz, target/*.ova
 
