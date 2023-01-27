@@ -18,7 +18,7 @@ More building information and installation can be found on the [LibreELEC Wiki](
 
 **Installing**
 
-You will need to flash the image file (`.img.gz`) to a USB stick, this can be done either with the [LibreELEC tool](https://libreelec.tv/downloads/) or [Belna ETECHER](https://www.balena.io/etcher).
+You will need to flash the image file (`.img.gz`) to a USB stick, this can be done either with the [LibreELEC tool](https://libreelec.tv/downloads/) or [Balena ETECHER](https://www.balena.io/etcher).
 
 **Usage**
 
