@@ -19,7 +19,7 @@ PKG_MESON_OPTS_TARGET="-Dbackend-drm-screencast-vaapi=false \
                        -Dweston-launch=false \
                        -Dxwayland=false \
                        -Dremoting=false \
-                       -Dshell-fullscreen=false \
+                       -Dshell-fullscreen=true \
                        -Dshell-ivi=false \
                        -Dcolor-management-lcms=false \
                        -Dcolor-management-colord=false \
