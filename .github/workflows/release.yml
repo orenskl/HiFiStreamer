@@ -1,0 +1,16 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "*.*.*"
+
+jobs:
+  build:
+    uses: ./.github/workflows/makefile.yml
+  release:
+    uses: softprops/action-gh-release@v1
+    with:
+      files: |
+        target/*.img.gz
+        target/*.ova
