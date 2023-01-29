@@ -6,11 +6,13 @@ on:
       - "*.*.*"
 
 jobs:
-  build:
-    uses: ./.github/workflows/makefile.yml
   release:
-    uses: softprops/action-gh-release@v1
-    with:
-      files: |
-        target/*.img.gz
-        target/*.ova
+    steps:
+      - name: Build
+        uses: ./.github/workflows/makefile.yml
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            target/*.img.gz
+            target/*.ova
