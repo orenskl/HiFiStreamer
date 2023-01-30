@@ -33,4 +33,5 @@ post_makeinstall_target() {
 
   mkdir -p ${INSTALL}/usr/config
     cp -PR ${PKG_DIR}/config/modprobe.d ${INSTALL}/usr/config
+    cp -PR ${PKG_DIR}/config/asound.conf ${INSTALL}/usr/config
 }
