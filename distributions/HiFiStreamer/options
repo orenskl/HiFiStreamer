@@ -11,7 +11,7 @@
 
 # Welcome Message for e.g. SSH Server (up to 5 Lines)
   GREETING0="##############################################"
-  GREETING1="#                 HiFiStreame                #"
+  GREETING1="#                 HiFiStreamer               #"
   GREETING2="#                                            #"
   GREETING3="##############################################"
   GREETING4=""
