@@ -15,7 +15,6 @@ pre_configure_target() {
   PKG_MESON_OPTS_TARGET="-Dgl=disabled \
                          -Dadder=disabled \
                          -Dapp=disabled \
-                         -Daudioconvert=disabled \
                          -Daudiomixer=disabled \
                          -Daudiorate=disabled \
                          -Daudioresample=disabled \
@@ -64,4 +63,5 @@ post_makeinstall_target() {
   mkdir -p ${INSTALL}/usr/lib/girepository-1.0
     cp ${PKG_DIR}/files/*.typelib ${INSTALL}/usr/lib/girepository-1.0
   
+  rm -rf ${INSTALL}/usr/share
 }
