@@ -7,4 +7,4 @@
 until $(/usr/bin/wget -q http://127.0.0.1:6680/iris -O /dev/null -o /dev/null); do
 	sleep 2
 done
-COG_PLATFORM_WL_VIEW_FULLSCREEN=1 /usr/bin/cog http://127.0.0.1:6680/iris
+COG_PLATFORM_WL_VIEW_FULLSCREEN=1 /usr/bin/cog http://127.0.0.1/
