@@ -1,0 +1,10 @@
+[Unit]
+Description=HiFiStreamer Application
+After=mopidy.service
+After=sound.target
+
+[Service]
+ExecStart=python3 -m hifistreamer-app
+
+[Install]
+WantedBy=multi-user.target
