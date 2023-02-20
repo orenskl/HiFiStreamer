@@ -22,12 +22,16 @@ You will need to flash the image file (`.img.gz`) to a USB stick, this can be do
 
 ## Usage 
 
-After installation and booting the Iris UI should appear on the display, you can also
-access it via a browser here `http://hifistreamer:6680/iris`.
+After installation and booting the UI should appear on the display, you can also
+access it via a browser here `http://hifistreamer`. The UI is composed of two tabs
+at the lower left of the screen:
+- **Player**: This is the Mopidy-Iris UI 
+- **System**: this is the HiFiStreamer settings application, currently the only supported
+functionality is setting the Audio Output device. (and a small About page)
 
 ## Setup
 
-Currently the only way to access the config files is via `SSH` or `SMB`.
+If you want to tweak more advacned options then the only way to access the config files is via `SSH` or `SMB`.
 
 All the configuration files can be found in the SMB `Configfiles` share.
 
@@ -40,10 +44,6 @@ The Mopidy config file is in `/storage/.config/mopidy/mopidy.conf`.
 Please consult the [Mopidy documentation](https://docs.mopidy.com/en/latest/) for configuration options.
 
 **A NOTE on Tidal** : If you enable Tidal please be aware you will have to attach the device to your Tidal account (currently you will need access to the Mopidy logs for that - more info can be found [here](https://github.com/tehkillerbee/mopidy-tidal#plugin-configuration)
-
-### ALSA
-
-The ALSA configuraion file is in `/storage/.config/asound.conf`
 
 ## Contribution
 
