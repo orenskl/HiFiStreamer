@@ -40,7 +40,7 @@ All the configuration files can be found in the SMB `Configfiles` share.
 
 The root password is `hifistreamer`, all the config files are in the `/storage/.config` directory.
 
-## Mopidy
+### Mopidy
 
 The Mopidy config file is in `/storage/.config/mopidy/mopidy.conf`.
 
