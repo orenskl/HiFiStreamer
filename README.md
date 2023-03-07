@@ -1,8 +1,6 @@
-[![Build Image](https://github.com/orenskl/HiFiStreamer/actions/workflows/makefile.yml/badge.svg)](https://github.com/orenskl/HiFiStreamer/actions/workflows/makefile.yml)
-
 # HiFiStreamer
 
-HiFiStreamer is an attempt to setup and build a full Audiophile network streaming device software based Linux with a JeOS concept, the main objective for this project is pure audio **Bit Perfect** sound reproduction from the source to the sink (from the network to the DAC). The project currently uses [Mopidy](https://mopidy.com) as its audio network streamer and [Mopidy-Iris](https://github.com/jaedb/Iris) as the UI, there is also support for **Tidal** streaming via [Mopidy-Tidal](https://github.com/tehkillerbee/mopidy-tidal). The first implementation will support generic x86 devices and hopefully I will add ARM (RPi) in the future. 
+HiFiStreamer is an attempt to setup and build a full Audiophile network streaming device software based Linux with a JeOS concept, the main objective for this project is pure audio **Bit Perfect** sound reproduction from the source to the sink (from the network to the DAC). The project currently uses [Mopidy](https://mopidy.com) as its audio network streamer and [Mopidy-Iris](https://github.com/jaedb/Iris) as the UI, there is also support for **TIDAL** streaming via [Mopidy-Tidal](https://github.com/tehkillerbee/mopidy-tidal). The first implementation will support generic x86 devices and hopefully I will add ARM (RPi) in the future. 
 
 This project is based on the [LibreELEC](https://libreelec.tv) JeOS disribution.
 
@@ -25,9 +23,14 @@ You will need to flash the image file (`.img.gz`) to a USB stick, this can be do
 After installation and booting the UI should appear on the display, you can also
 access it via a browser here `http://hifistreamer`. The UI is composed of two tabs
 at the lower left of the screen:
-- **Player**: This is the Mopidy-Iris UI 
-- **System**: this is the HiFiStreamer settings application, currently the only supported
-functionality is setting the Audio Output device. (and a small About page)
+- **Player**: This is the Mopidy-Iris UI.
+    - Please note when you first login to the system you will have to setupa Mopidy-Iris connection, just press the ***submit*** button to go to the player UI.
+    - The rest of the Mopidy-Iris UI is self explanatory, if you need any assistance please go to [Mopidy-Iris](https://github.com/jaedb/Iris)
+- **System**: this is the HiFiStreamer settings application, on the left there is the main navigation bar which consissts of :
+    - **Audio**: setting the Audio Output device.
+    - **Streaming**: Enabel streaming services (currently only **TIDAL** is supported).
+        - To enabled **TIDAL** press the radio button, you will be presented with a QR code and a link to authenticate with **TIDAL**. You can either scan the QR code or copy paste the link to another windows (or device) and authenticate your **TIDAL** subscription - This will require a **TIDAL HiFi Plus** Subscription - and then you are ready to go.
+    - **About**: General informationm screen.
 
 ## Setup
 
@@ -37,13 +40,11 @@ All the configuration files can be found in the SMB `Configfiles` share.
 
 The root password is `hifistreamer`, all the config files are in the `/storage/.config` directory.
 
-### Mopidy
+## Mopidy
 
 The Mopidy config file is in `/storage/.config/mopidy/mopidy.conf`.
 
 Please consult the [Mopidy documentation](https://docs.mopidy.com/en/latest/) for configuration options.
-
-**A NOTE on Tidal** : If you enable Tidal please be aware you will have to attach the device to your Tidal account (currently you will need access to the Mopidy logs for that - more info can be found [here](https://github.com/tehkillerbee/mopidy-tidal#plugin-configuration)
 
 ## Contribution
 
