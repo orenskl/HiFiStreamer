@@ -4,7 +4,7 @@ After=mopidy.service
 After=sound.target
 
 [Service]
-ExecStart=python3 -m hifistreamer-app
+ExecStart=python3 -m hifistreamer_app
 
 [Install]
 WantedBy=multi-user.target

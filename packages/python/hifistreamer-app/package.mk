@@ -2,8 +2,8 @@
 # Copyright (C) 2023 Oren Sokoler
 
 PKG_NAME="hifistreamer-app"
-PKG_VERSION="0.0.1"
-PKG_SHA256="61b28143137be799f0327ac0964f3aa1470c242ba57666e1a8648cfc9fdbe30c"
+PKG_VERSION="0.0.2"
+PKG_SHA256="3e04a0bfe8c513758ea5b42851997cc82f50f6dd25ebeab6391a54a1e4dc1280"
 PKG_LICENSE="MIT"
 PKG_SITE="https://github.com/orenskl/hifistreamer-app"
 PKG_URL="https://github.com/orenskl/hifistreamer-app/releases/download/${PKG_VERSION}/hifistreamer-app-${PKG_VERSION}.tar.gz"
