@@ -6,11 +6,10 @@ ConditionKernelCommandLine=!installer
 
 [Service]
 Type=notify
-Environment=HOME=/storage
 Environment=XDG_RUNTIME_DIR=/var/run/0-runtime-dir
 WorkingDirectory=/storage
 ExecStartPre=-/usr/lib/weston/weston-config
-ExecStart=/usr/bin/weston --tty=1 --log=/var/log/weston.log --modules=systemd-notify.so --shell=fullscreen-shell.so
+ExecStart=/usr/bin/weston --tty=1 -c /usr/share/weston/weston.ini --log=/var/log/weston.log --modules=systemd-notify.so
 Restart=always
 RestartSec=10
 
