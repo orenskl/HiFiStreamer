@@ -1,0 +1,12 @@
+diff -rNu python-tidal-0.7.0/tidalapi/user.py python-tidal-0.7.0.new/tidalapi/user.py
+--- python-tidal-0.7.0/tidalapi/user.py	2022-09-09 02:59:37.000000000 +0300
++++ python-tidal-0.7.0.new/tidalapi/user.py	2023-03-18 17:35:49.474366818 +0200
+@@ -74,7 +74,7 @@
+         self.id = json_obj['id']
+         self.first_name = json_obj['firstName']
+         self.last_name = json_obj['lastName']
+-        self.picture_id = json_obj['picture']
++        self.picture_id = json_obj.get('picture', '')
+ 
+         return copy(self)
+ 
