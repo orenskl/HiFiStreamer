@@ -3,7 +3,7 @@
 
 PKG_NAME="hifistreamer-app"
 PKG_VERSION="0.0.6"
-PKG_SHA256="4bc9aa1287eceb508fa03df1aa73b2859696ac522a07586ed1e1dfd8af735bd9"
+PKG_SHA256="5ebaed178a52b23ff56f13c480033c2000754794276e52d5c5d7e88c445a7bb3"
 PKG_LICENSE="MIT"
 PKG_SITE="https://github.com/orenskl/hifistreamer-app"
 PKG_URL="https://github.com/orenskl/hifistreamer-app/releases/download/${PKG_VERSION}/hifistreamer-app-${PKG_VERSION}.tar.gz"
