@@ -1,8 +1,2 @@
 # VERSION: set full version, use "devel" for development version
   HIFISTREAMER_VERSION="0.2.0"
-
-# OS_VERSION: OS Version
-  OS_VERSION="0.0.1"
-
-# ADDON_VERSION: Addon version
-  ADDON_VERSION="0.0.1"
