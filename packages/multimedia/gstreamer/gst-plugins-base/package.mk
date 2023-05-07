@@ -2,8 +2,8 @@
 # Copyright (C) 2022-present Team LibreELEC (https://libreelec.tv)
 
 PKG_NAME="gst-plugins-base"
-PKG_VERSION="1.16.3"
-PKG_SHA256="9f02678b0bbbcc9eff107d3bd89d83ce92fec2154cd607c7c8bd34dc7fee491c"
+PKG_VERSION="1.22.0"
+PKG_SHA256="f53672294f3985d56355c8b1df8f6b49c8c8721106563e19f53be3507ff2229d"
 PKG_LICENSE="GPL-2.1-or-later"
 PKG_SITE="https://gstreamer.freedesktop.org/modules/gst-plugins-base.html"
 PKG_URL="https://gstreamer.freedesktop.org/src/gst-plugins-base/${PKG_NAME}-${PKG_VERSION}.tar.xz"
@@ -46,22 +46,15 @@ pre_configure_target() {
                          -Dexamples=disabled \
                          -Dtests=disabled \
                          -Dtools=disabled \
-                         -Dintrospection=disabled \
                          -Dnls=disabled \
                          -Dorc=disabled \
                          -Dgobject-cast-checks=disabled \
                          -Dglib-asserts=disabled \
                          -Dglib-checks=disabled \
-                         -Dpackage-name=gst-plugins-base \
-                         -Dpackage-origin=LibreELEC.tv \
                          -Ddoc=disabled"
 }
 
 post_makeinstall_target() {
- 
-  # Copy pre-built typelib files to install dir
-  mkdir -p ${INSTALL}/usr/lib/girepository-1.0
-    cp ${PKG_DIR}/files/*.typelib ${INSTALL}/usr/lib/girepository-1.0
-  
-  rm -rf ${INSTALL}/usr/share
+  # clean up
+  safe_remove ${INSTALL}
 }
