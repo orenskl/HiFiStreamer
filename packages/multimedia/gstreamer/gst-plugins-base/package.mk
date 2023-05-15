@@ -57,4 +57,8 @@ pre_configure_target() {
 post_makeinstall_target() {
   # clean up
   safe_remove ${INSTALL}
+
+  # Copy pre-built typelib files to install dir
+  mkdir -p ${INSTALL}/usr/lib/girepository-1.0
+    cp ${PKG_DIR}/files/*.typelib ${INSTALL}/usr/lib/girepository-1.0
 }

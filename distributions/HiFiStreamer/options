@@ -32,12 +32,21 @@
 # GOLD (Google Linker) support
   GOLD_SUPPORT="yes"
 
+# MOLD (Modern Linker) support
+  MOLD_SUPPORT="no"
+
+# default linker (bfd / gold / mold)
+  DEFAULT_LINKER="gold"
+
 # HARDENING (security relevant linker and compiler flags) support
   HARDENING_SUPPORT="no"
 
 # Default supported get handlers (archive, git, file etc.)
   GET_HANDLER_SUPPORT="archive file"
 
+# use local ccache on build host, if available, for early package
+# builds before ccache has been built
+  LOCAL_CCACHE_SUPPORT="yes"
 
 ### OS CONFIGURATION ###
 
