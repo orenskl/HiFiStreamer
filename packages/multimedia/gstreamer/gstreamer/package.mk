@@ -13,7 +13,6 @@ PKG_LONGDESC="GStreamer open-source multimedia framework core library"
 pre_configure_target() {
   PKG_MESON_OPTS_TARGET="-Dgst_debug=false \
                          -Dgst_parse=true \
-                         -Dregistry=false \
                          -Dtracer_hooks=false \
                          -Doption-parsing=true \
                          -Dpoisoning=false \
@@ -26,8 +25,6 @@ pre_configure_target() {
                          -Dexamples=disabled \
                          -Dtests=disabled \
                          -Dbenchmarks=disabled \
-                         -Dtools=disabled \
-                         -Ddoc=disabled \
                          -Dnls=disabled \
                          -Dgobject-cast-checks=disabled \
                          -Dglib-asserts=disabled \
@@ -39,5 +36,8 @@ pre_configure_target() {
 post_makeinstall_target() {
   # clean up
   safe_remove ${INSTALL}/usr/share
-  safe_remove ${INSTALL}/usr/lib/{libgstcontroller-1.0*,libgstnet-1.0*}
+
+  # Copy pre-built typelib files to install dir
+  mkdir -p ${INSTALL}/usr/lib/girepository-1.0
+    cp ${PKG_DIR}/files/*.typelib ${INSTALL}/usr/lib/girepository-1.0
 }

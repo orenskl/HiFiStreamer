@@ -1,4 +1,0 @@
-#!/bin/bash
-
-export LD_LIBRARY_PATH=${PKG_CONFIG_SYSROOT_DIR}/usr/lib
-${PKG_CONFIG_SYSROOT_DIR}/usr/lib/ld-2.32.so $@
