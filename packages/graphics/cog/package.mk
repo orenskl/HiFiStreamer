@@ -2,12 +2,12 @@
 # Copyright (C) 2023 Oren Sokoler
 
 PKG_NAME="cog"
-PKG_VERSION="0.16.1"
-PKG_SHA256="37c5f14123b8dcf077839f6c60f0d721d2a91bb37829e796f420126e6b0d38b5"
+PKG_VERSION="0.18.0"
+PKG_SHA256="410bf70f9aa3812db72d75c25cefee421efa0391ab03dc3c37299dfaa388f4fd"
 PKG_LICENSE="GPL"
 PKG_SITE="https://wpewebkit.org"
 PKG_URL="https://wpewebkit.org/releases/cog-${PKG_VERSION}.tar.xz"
-PKG_DEPENDS_TARGET="toolchain wpewebkit wpebackend-fdo libxkbcommon"
+PKG_DEPENDS_TARGET="toolchain wpewebkit wpebackend-fdo libxkbcommon weston"
 PKG_LONGDESC="WPE launcher and webapp container"
 
 post_install() {

@@ -11,7 +11,7 @@
   DISPLAYSERVER="wl"
 
 # Windowmanager to use (fluxbox / sway / weston / no)
-  WINDOWMANAGER="sway"
+  WINDOWMANAGER="weston"
 
 # KODI Player implementation to use (mesa / default)
   KODIPLAYER_DRIVER="mesa"
