@@ -37,7 +37,7 @@ make_target() {
   make -C utils/dvb CFLAGS="${TARGET_CFLAGS}"
   make -C utils/v4l2-ctl CFLAGS="${TARGET_CFLAGS}"
 
-  if [ "${LIBREELEC_VERSION}" == "devel" ]; then
+  if [ "${HIFISTREAMER_VERSION}" == "devel" ]; then
     make -C utils/v4l2-compliance CFLAGS="${TARGET_CFLAGS}"
   fi
 }
@@ -51,7 +51,7 @@ makeinstall_target() {
   make install DESTDIR=${INSTALL} PREFIX=/usr -C utils/dvb
   make install DESTDIR=${INSTALL} PREFIX=/usr -C utils/v4l2-ctl
 
-  if [ "${LIBREELEC_VERSION}" == "devel" ]; then
+  if [ "${HIFISTREAMER_VERSION}" == "devel" ]; then
     make install DESTDIR=${INSTALL} PREFIX=/usr -C utils/v4l2-compliance
   fi
 

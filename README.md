@@ -6,7 +6,7 @@ This project is based on the [LibreELEC](https://libreelec.tv) JeOS disribution.
 
 ## Building
 
-To build HiFiStreamer you will need a Ubuntu 20.04 build machine, clone the repo and run :
+To build HiFiStreamer you will need a [Ubuntu 22](https://releases.ubuntu.com/jammy/) build machine, clone the repo and run :
 
 `PROJECT=Generic ARCH=x86_64 make image`
 

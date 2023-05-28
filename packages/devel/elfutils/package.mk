@@ -14,7 +14,7 @@ PKG_LONGDESC="A collection of utilities to handle ELF objects."
 PKG_TOOLCHAIN="autotools"
 PKG_BUILD_FLAGS="+pic"
 
-if [ "${LIBREELEC_VERSION}" = "devel" ]; then
+if [ "${HIFISTREAMER_VERSION}" = "devel" ]; then
   PKG_PROGRAMS="--enable-programs --program-prefix="
   PKG_PROGRAMS_LIST="readelf"
 else

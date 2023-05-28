@@ -11,5 +11,5 @@ PKG_DEPENDS_TARGET="toolchain libpsl glib-networking libxml2"
 PKG_LONGDESC="HTTP client/server library for GNOME"
 
 pre_configure_target() {
-  PKG_MESON_OPTS_TARGET="-Dtests=false -Dintrospection=disabled -Dgtk_doc=false -Dtls_check=true -Dsysprof=disabled"
+  PKG_MESON_OPTS_TARGET="-Dtests=false -Dintrospection=disabled -Dgtk_doc=false -Dtls_check=false -Dsysprof=disabled"
 }
