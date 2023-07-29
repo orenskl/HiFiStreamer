@@ -1,0 +1,12 @@
+diff -ruN tidalapi-0.7.1/tidalapi/user.py tidalapi-0.7.1.new/tidalapi/user.py
+--- tidalapi-0.7.1/tidalapi/user.py	2023-05-22 22:46:49.000000000 +0300
++++ tidalapi-0.7.1.new/tidalapi/user.py	2023-07-25 15:47:37.237847929 +0300
+@@ -111,7 +111,7 @@
+         self.created = dateutil.parser.isoparse(json_obj["created"])
+         self.newsletter = json_obj["newsletter"]
+         self.accepted_eula = json_obj["acceptedEULA"]
+-        self.gender = json_obj["gender"]
++        self.gender = json_obj.get("gender", "not specified")
+         self.date_of_birth = json_obj["dateOfBirth"]
+         self.facebook_uid = json_obj["facebookUid"]
+         self.apple_uid = json_obj["appleUid"]
