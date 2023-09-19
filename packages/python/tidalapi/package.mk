@@ -2,8 +2,8 @@
 # Copyright (C) 2023 Oren Sokoler
 
 PKG_NAME="tidalapi"
-PKG_VERSION="0.7.1"
-PKG_SHA256="7ce1a8e89253f3580ef4a8d48206580da233780e602c02b52f5acb6b06c9201e"
+PKG_VERSION="0.7.3"
+PKG_SHA256="85cca90e753414ff6b8ad58d57d579045d80f04dd123f22a4af710a8d59abfe8"
 PKG_LICENSE="LGPLv3"
 PKG_SITE="https://pypi.org/project/tidalapi/"
 PKG_URL="https://github.com/tamland/python-tidal/archive/refs/tags/v${PKG_VERSION}.tar.gz"
