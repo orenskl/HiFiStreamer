@@ -1,7 +1,7 @@
 {
     "files.watcherExclude": {
-        "build*/**": true,
-        "sources/**": true,
-        "target/**": true
+        "**/build*/**": true,
+        "**/sources/**": true,
+        "**/target/**": true
     }
 }
