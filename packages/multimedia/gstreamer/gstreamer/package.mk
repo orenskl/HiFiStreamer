@@ -11,7 +11,7 @@ PKG_DEPENDS_TARGET="toolchain glib glib:host"
 PKG_LONGDESC="GStreamer open-source multimedia framework core library"
 
 pre_configure_target() {
-  PKG_MESON_OPTS_TARGET="-Dgst_debug=false \
+  PKG_MESON_OPTS_TARGET="-Dgst_debug=true \
                          -Dgst_parse=true \
                          -Dtracer_hooks=false \
                          -Doption-parsing=true \

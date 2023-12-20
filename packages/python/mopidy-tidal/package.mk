@@ -2,11 +2,11 @@
 # Copyright (C) 2023 Oren Sokoler
 
 PKG_NAME="mopidy-tidal"
-PKG_VERSION="0.3.2"
-PKG_SHA256="7a4aa1ccac94d96a9339e451d5949903dc96dd45ec2c1b02d8193a159ad08267"
+PKG_VERSION="0.3.4"
+PKG_SHA256="3fcd94a2a06dbd0f942f3f1ba8ea485a2b00d5576601389504fa64bdce949ee3"
 PKG_LICENSE="Apache-2.0"
 PKG_SITE="https://pypi.org/project/Mopidy-Tidal/"
-PKG_URL="https://files.pythonhosted.org/packages/86/1a/39879cb524cc4c874cc18172ca69ec4cc93646a73eaf87f15701518525e9/Mopidy-Tidal-${PKG_VERSION}.tar.gz"
+PKG_URL="https://files.pythonhosted.org/packages/fc/44/084f733c04276a65e5fda98ba7f4b965fab72a7efc020e4bb0416216fc4e/mopidy_tidal-${PKG_VERSION}.tar.gz"
 PKG_DEPENDS_TARGET="Python3 setuptools mopidy tidalapi"
 PKG_LONGDESC="Mopidy Extension for Tidal music service integration."
 PKG_TOOLCHAIN="manual"
