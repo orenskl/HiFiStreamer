@@ -2,8 +2,8 @@
 # Copyright (C) 2023 Oren Sokoler
 
 PKG_NAME="mopidy"
-PKG_VERSION="3.4.1"
-PKG_SHA256="a06337cc2e425361fb312656b9480fdc3f7994b5d07bb05d9f56c02b393331a3"
+PKG_VERSION="3.4.2"
+PKG_SHA256="5457b233f5aba0f47d3e087c29306cc209449290342b7f71a5c6bde856bcf570"
 PKG_LICENSE="OSS"
 PKG_SITE="https://pypi.org/project/Mopidy/"
 PKG_URL="https://github.com/${PKG_NAME}/${PKG_NAME}/archive/refs/tags/v${PKG_VERSION}.tar.gz"
