@@ -1,0 +1,12 @@
+diff -rNu gobject-introspection-1.76.1/gir/meson.build gobject-introspection-1.76.1.new/gir/meson.build
+--- gobject-introspection-1.76.1/gir/meson.build	2023-03-23 00:43:34.000000000 +0200
++++ gobject-introspection-1.76.1.new/gir/meson.build	2024-01-28 21:18:35.037495555 +0200
+@@ -232,6 +232,8 @@
+   gir_giscanner_built_files = giscanner_built_files
+ endif
+ 
++g_ir_scanner_env.set('CC', meson.get_compiler('c', native : false).cmd_array())
++
+ glib_gir = custom_target('gir-glib',
+   input: glib_files,
+   output: 'GLib-2.0.gir',
