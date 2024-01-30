@@ -11,51 +11,45 @@ PKG_DEPENDS_TARGET="toolchain gstreamer alsa-utils alsa-lib"
 PKG_LONGDESC="Base GStreamer plugins and helper libraries"
 PKG_BUILD_FLAGS="-gold"
 
-pre_configure_target() {
-  PKG_MESON_OPTS_TARGET="-Dgl=disabled \
-                         -Dadder=disabled \
-                         -Dapp=disabled \
-                         -Daudiomixer=disabled \
-                         -Daudiorate=disabled \
-                         -Daudioresample=disabled \
-                         -Daudiotestsrc=disabled \
-                         -Dcompositor=disabled \
-                         -Dencoding=disabled \
-                         -Dgio=disabled \
-                         -Dgio-typefinder=disabled \
-                         -Doverlaycomposition=disabled \
-                         -Dpbtypes=disabled \
-                         -Drawparse=enabled \
-                         -Dsubparse=enabled \
-                         -Dtcp=disabled \
-                         -Dvideoconvertscale=disabled \
-                         -Dvideorate=disabled \
-                         -Dvideotestsrc=disabled \
-                         -Dcdparanoia=disabled \
-                         -Dlibvisual=disabled \
-                         -Dogg=disabled \
-                         -Dopus=disabled \
-                         -Dpango=disabled \
-                         -Dtheora=disabled \
-                         -Dtremor=disabled \
-                         -Dvorbis=disabled \
-                         -Dx11=disabled \
-                         -Dxshm=disabled \
-                         -Dxi=disabled \
-                         -Dxvideo=disabled \
-                         -Dexamples=disabled \
-                         -Dtests=disabled \
-                         -Dtools=disabled \
-                         -Dnls=disabled \
-                         -Dorc=disabled \
-                         -Dgobject-cast-checks=disabled \
-                         -Dglib-asserts=disabled \
-                         -Dglib-checks=disabled \
-                         -Ddoc=disabled"
-}
-
-post_makeinstall_target() {
-  # Copy pre-built typelib files to install dir
-  mkdir -p ${INSTALL}/usr/lib/girepository-1.0
-    cp ${PKG_DIR}/files/*.typelib ${INSTALL}/usr/lib/girepository-1.0
-}
+PKG_MESON_OPTS_TARGET="-Dgl=disabled \
+                       -Dadder=disabled \
+                       -Dapp=disabled \
+                       -Daudiomixer=disabled \
+                       -Daudiorate=disabled \
+                       -Daudioresample=disabled \
+                       -Daudiotestsrc=disabled \
+                       -Dcompositor=disabled \
+                       -Dencoding=disabled \
+                       -Dgio=disabled \
+                       -Dgio-typefinder=disabled \
+                       -Doverlaycomposition=disabled \
+                       -Dpbtypes=disabled \
+                       -Drawparse=enabled \
+                       -Dsubparse=enabled \
+                       -Dtcp=disabled \
+                       -Dvideoconvertscale=disabled \
+                       -Dvideorate=disabled \
+                       -Dvideotestsrc=disabled \
+                       -Dcdparanoia=disabled \
+                       -Dlibvisual=disabled \
+                       -Dogg=disabled \
+                       -Dopus=disabled \
+                       -Dpango=disabled \
+                       -Dtheora=disabled \
+                       -Dtremor=disabled \
+                       -Dvorbis=disabled \
+                       -Dx11=disabled \
+                       -Dxshm=disabled \
+                       -Dxi=disabled \
+                       -Dxvideo=disabled \
+                       -Dexamples=disabled \
+                       -Dtests=disabled \
+                       -Dtools=disabled \
+                       -Dnls=disabled \
+                       -Dorc=disabled \
+                       -Dgobject-cast-checks=disabled \
+                       -Dglib-asserts=disabled \
+                       -Dglib-checks=disabled \
+                       -Dintrospection=enabled \
+                       -Dbinary_wrapper=${PWD}/tools/gir-wrapper \
+                       -Ddoc=disabled"

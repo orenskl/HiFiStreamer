@@ -13,7 +13,7 @@ PKG_LONGDESC="GObject introspection is a middleware layer between C libraries (u
 PKG_TOOLCHAIN="meson"
 
 PKG_MESON_OPTS_HOST="-Dbuild_introspection_data=false"
-PKG_MESON_OPTS_TARGET="-Dgi_cross_use_prebuilt_gi=true -Dgi_cross_binary_wrapper=${PKG_DIR}/scripts/gir-wrapper"
+PKG_MESON_OPTS_TARGET="-Dgi_cross_use_prebuilt_gi=true -Dgi_cross_binary_wrapper=${PWD}/tools/gir-wrapper"
 
 post_makeinstall_target(){
 

@@ -1,0 +1,80 @@
+diff -rNu gstreamer-1.22.0/gst/meson.build gstreamer-1.22.0.new/gst/meson.build
+--- gstreamer-1.22.0/gst/meson.build	2023-01-23 21:29:34.000000000 +0200
++++ gstreamer-1.22.0.new/gst/meson.build	2024-01-29 21:30:40.218393721 +0200
+@@ -288,6 +288,9 @@
+       '--cflags-end']
+   endif
+ 
++  gst_gir_extra_args += ['--lib-dirs-envvar=DUMMY_UNUSED_ENVVAR',
++    '--use-binary-wrapper=' + get_option('binary_wrapper')]
++
+   gst_incdirs += [configinc]
+   gir = {
+     'sources' : gst_sources + gst_headers + gst_enums + [gst_version_h],
+diff -rNu gstreamer-1.22.0/libs/gst/base/meson.build gstreamer-1.22.0.new/libs/gst/base/meson.build
+--- gstreamer-1.22.0/libs/gst/base/meson.build	2023-01-23 21:29:34.000000000 +0200
++++ gstreamer-1.22.0.new/libs/gst/base/meson.build	2024-01-29 22:56:01.251382173 +0200
+@@ -62,6 +62,8 @@
+ 
+ if build_gir
+   gst_gir_extra_args = gir_init_section + [ '--c-include=gst/base/base.h' ]
++  gst_gir_extra_args += ['--lib-dirs-envvar=DUMMY_UNUSED_ENVVAR',
++    '--use-binary-wrapper=' + get_option('binary_wrapper')]
+   gir = {
+     'sources' : gst_base_sources + gst_base_headers,
+     'namespace' : 'GstBase',
+@@ -75,7 +77,6 @@
+     'install' : true,
+     'extra_args' : gst_gir_extra_args,
+   }
+-
+   library_def += {'gir': [gir]}
+   if not static_build
+     gst_base_gir = gnome.generate_gir(gst_base, kwargs: gir)
+diff -rNu gstreamer-1.22.0/libs/gst/check/meson.build gstreamer-1.22.0.new/libs/gst/check/meson.build
+--- gstreamer-1.22.0/libs/gst/check/meson.build	2023-01-23 21:29:34.000000000 +0200
++++ gstreamer-1.22.0.new/libs/gst/check/meson.build	2024-01-29 22:56:15.311941224 +0200
+@@ -65,6 +65,8 @@
+ gst_check_gen_sources = []
+ if build_gir
+   gst_gir_extra_args = gir_init_section + [ '--c-include=gst/check/check.h' ]
++  gst_gir_extra_args += ['--lib-dirs-envvar=DUMMY_UNUSED_ENVVAR',
++    '--use-binary-wrapper=' + get_option('binary_wrapper')]
+   gir = {
+     'sources' : gst_check_sources + gst_check_headers,
+     'namespace' : 'GstCheck',
+diff -rNu gstreamer-1.22.0/libs/gst/controller/meson.build gstreamer-1.22.0.new/libs/gst/controller/meson.build
+--- gstreamer-1.22.0/libs/gst/controller/meson.build	2023-01-23 21:29:34.000000000 +0200
++++ gstreamer-1.22.0.new/libs/gst/controller/meson.build	2024-01-29 22:55:59.455307238 +0200
+@@ -60,6 +60,8 @@
+ 
+ if build_gir
+   gst_gir_extra_args = gir_init_section + [ '--c-include=gst/controller/controller.h' ]
++  gst_gir_extra_args += ['--lib-dirs-envvar=DUMMY_UNUSED_ENVVAR',
++    '--use-binary-wrapper=' + get_option('binary_wrapper')]
+   gir = {
+     'sources' : gst_controller_sources + gst_controller_headers + [gstcontroller_h] + [gstcontroller_c],
+     'namespace': 'GstController',
+diff -rNu gstreamer-1.22.0/libs/gst/net/meson.build gstreamer-1.22.0.new/libs/gst/net/meson.build
+--- gstreamer-1.22.0/libs/gst/net/meson.build	2023-01-23 21:29:34.000000000 +0200
++++ gstreamer-1.22.0.new/libs/gst/net/meson.build	2024-01-29 22:56:31.060154386 +0200
+@@ -47,6 +47,8 @@
+ 
+ if build_gir
+   gst_gir_extra_args = gir_init_section + [ '--c-include=gst/net/net.h' ]
++  gst_gir_extra_args += ['--lib-dirs-envvar=DUMMY_UNUSED_ENVVAR',
++    '--use-binary-wrapper=' + get_option('binary_wrapper')]
+   gir = {
+     'sources' : gst_net_sources + gst_net_headers,
+     'namespace' : 'GstNet',
+diff -rNu gstreamer-1.22.0/meson_options.txt gstreamer-1.22.0.new/meson_options.txt
+--- gstreamer-1.22.0/meson_options.txt	2023-01-23 21:29:34.000000000 +0200
++++ gstreamer-1.22.0.new/meson_options.txt	2024-01-29 21:30:56.374060986 +0200
+@@ -46,3 +46,7 @@
+        description : 'package origin URL to use in plugins')
+ option('doc', type : 'feature', value : 'auto', yield: true,
+        description: 'Enable documentation.')
++
++option('binary_wrapper', type: 'string',
++  description: 'Use a wrapper to run gicompiler and binaries produced by giscanner (useful when cross-compiling)'
++)
