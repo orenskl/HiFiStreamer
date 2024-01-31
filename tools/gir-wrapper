@@ -1,0 +1,21 @@
+#!/bin/bash
+#
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2024 Oren Sokoler (https://github.com/orenskl)
+# 
+#
+
+#
+# This script runs the argument as if it runs in the target 
+# environment, it is used to generate the gir files for some
+# libraries, (See here : https://maxice8.github.io/8-cross-the-gir/)
+#
+
+if [ $# -eq 0 ]
+then
+    echo "Usage : $0 program [args]"
+    exit 1
+fi
+
+export LD_LIBRARY_PATH=${PKG_CONFIG_SYSROOT_DIR}/usr/lib 
+${PKG_CONFIG_SYSROOT_DIR}/usr/lib/ld-linux-x86-64.so.2 "$@"
