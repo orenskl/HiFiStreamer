@@ -4,6 +4,13 @@ HiFiStreamer is an attempt to setup and build a full Audiophile network streamin
 
 This project is based on the [LibreELEC](https://libreelec.tv) JeOS disribution.
 
+## Mopidy Plugins
+
+Currently this project includes the following [Mopidy](https://mopidy.com) plugins :
+
++ [Mopidy-Iris](https://mopidy.com/ext/iris/)
++ [Mopidy-Tidal](https://mopidy.com/ext/tidal/)
+
 ## Building
 
 To build HiFiStreamer you will need a [Ubuntu 22](https://releases.ubuntu.com/jammy/) build machine, clone the repo and run :
