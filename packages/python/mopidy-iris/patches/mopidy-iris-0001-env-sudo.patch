@@ -1,0 +1,12 @@
+diff -rNu Iris-3.69.3/mopidy_iris/system.py Iris-3.69.3.new/mopidy_iris/system.py
+--- Iris-3.69.3/mopidy_iris/system.py	2024-01-02 23:55:35
++++ Iris-3.69.3.new/mopidy_iris/system.py	2025-03-29 12:38:25
+@@ -25,7 +25,7 @@
+ 
+ 
+ class IrisSystemThread(Thread):
+-    _USE_SUDO = os.environ.get("IRIS_USE_SUDO", True)
++    _USE_SUDO = os.getenv("IRIS_USE_SUDO", 'True').lower() in ('true','1')
+ 
+     def __init__(self, action, ioloop, callback):
+         Thread.__init__(self)

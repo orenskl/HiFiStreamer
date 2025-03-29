@@ -10,6 +10,8 @@ After=sound.target
 Wants=network-online.target
 
 [Service]
+Environment=IRIS_USE_SUDO=0
+Environment=IRIS_CONFIG_LOCATION=/usr/share/mopidy/conf.d:/storage/.config/mopidy/mopidy.conf
 ExecStartPre=/bin/mkdir -p /storage/.cache/mopidy
 ExecStartPre=/bin/mkdir -p /storage/music
 ExecStart=python3 /usr/bin/mopidy --config /usr/share/mopidy/conf.d:/storage/.config/mopidy/mopidy.conf

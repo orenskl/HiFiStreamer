@@ -21,4 +21,5 @@ makeinstall_target() {
 
 post_makeinstall_target() {
   python_remove_source
+  touch ${INSTALL}/IS_CONTAINER
 }
