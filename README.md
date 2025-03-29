@@ -10,6 +10,8 @@ Currently this project includes the following [Mopidy](https://mopidy.com) plugi
 
 + [Mopidy-Iris](https://mopidy.com/ext/iris/)
 + [Mopidy-Tidal](https://mopidy.com/ext/tidal/)
++ [Mopidy-Local](https://mopidy.com/ext/local/)
++ [Mopidy-File](https://mopidy.com/ext/file/)
 
 ## Building
 
