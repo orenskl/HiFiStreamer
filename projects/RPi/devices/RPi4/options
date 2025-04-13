@@ -1,0 +1,26 @@
+################################################################################
+# Device defaults
+################################################################################
+
+  # NOOBS supported hex versions (legacy) is not relevant for RPi4
+    unset NOOBS_HEX
+
+  # NOOBS supported model versions
+    NOOBS_SUPPORTED_MODELS='"Pi 4"'
+
+  # additional Firmware to use (dvb-firmware, misc-firmware, wlan-firmware)
+    FIRMWARE="${FIRMWARE} rpi-eeprom"
+
+  # set the addon project
+    ADDON_PROJECT="ARMv8"
+
+  # build 64bit kernel
+    case $TARGET_ARCH in
+      arm)
+        TARGET_KERNEL_ARCH="arm64"
+        TARGET_KERNEL_PATCH_ARCH="aarch64"
+        ;;
+    esac
+
+  # Kernel target
+    KERNEL_TARGET="Image"
