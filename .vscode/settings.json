@@ -3,5 +3,6 @@
         "**/build*/**": true,
         "**/sources/**": true,
         "**/target/**": true
-    }
+    },
+    "makefile.configureOnOpen": false
 }
