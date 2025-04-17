@@ -7,4 +7,7 @@ PKG_URL="https://gstreamer.freedesktop.org/src/gst-python/gst-python-${PKG_VERSI
 PKG_DEPENDS_TARGET="toolchain pygobject gstreamer gst-plugins-base"
 PKG_LONGDESC="GStreamer Python binding overrides"
 
-PKG_MESON_OPTS_TARGET="-Dlibpython-dir=/usr/lib"
+pre_configure_target() {
+  PKG_CONFIG_PATH="${SYSROOT_PREFIX}/usr/lib/pkgconfig"
+  PKG_MESON_OPTS_TARGET="-Dlibpython-dir=/usr/lib"
+}

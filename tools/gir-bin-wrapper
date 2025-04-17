@@ -17,9 +17,9 @@ then
     exit 1
 fi
 
-if [[ $ARCH == "arm" ]]
+if [[ $ARCH == "aarch64" ]]
 then
-    qemu-arm -E LD_LIBRARY_PATH=${PKG_CONFIG_SYSROOT_BASE}/image/system/usr/lib -L ${PKG_CONFIG_SYSROOT_DIR}/usr "$@"
+    qemu-aarch64 -E LD_LIBRARY_PATH=${PKG_CONFIG_SYSROOT_BASE}/image/system/usr/lib -L ${PKG_CONFIG_SYSROOT_DIR}/usr "$@"
 else
     export LD_LIBRARY_PATH=${PKG_CONFIG_SYSROOT_DIR}/usr/lib 
     ${PKG_CONFIG_SYSROOT_DIR}/usr/lib/ld-linux-x86-64.so.2 "$@"

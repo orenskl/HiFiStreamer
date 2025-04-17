@@ -26,5 +26,5 @@ pre_configure_host() {
                        --disable-system \
                        --disable-vnc \
                        --disable-werror \
-                       --target-list=arm-linux-user"
+                       --target-list=aarch64-linux-user"
 }

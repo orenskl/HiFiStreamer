@@ -16,9 +16,9 @@ then
     exit 1
 fi
 
-if [[ $ARCH == "arm" ]]
+if [[ $ARCH == "aarch64" ]]
 then
-    qemu-arm -L ${PKG_CONFIG_SYSROOT_DIR}/usr -E LD_TRACE_LOADED_OBJECTS=1 ${PKG_CONFIG_SYSROOT_DIR}/usr/bin/ld.so --library-path ${PKG_CONFIG_SYSROOT_DIR}/usr/lib "$@"
+    qemu-aarch64 -L ${PKG_CONFIG_SYSROOT_DIR}/usr -E LD_TRACE_LOADED_OBJECTS=1 ${PKG_CONFIG_SYSROOT_DIR}/usr/bin/ld.so --library-path ${PKG_CONFIG_SYSROOT_DIR}/usr/lib "$@"
 else
     ldd "$@"
 fi

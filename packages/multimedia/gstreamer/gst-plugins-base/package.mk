@@ -51,5 +51,6 @@ PKG_MESON_OPTS_TARGET="-Dgl=disabled \
                        -Dglib-asserts=disabled \
                        -Dglib-checks=disabled \
                        -Dintrospection=enabled \
-                       -Dbinary_wrapper=${PWD}/tools/gir-wrapper \
+                       -Dbinary_wrapper=${PWD}/tools/gir-bin-wrapper \
+                       -Dldd_wrapper=${PWD}/tools/gir-ldd-wrapper \
                        -Ddoc=disabled"
