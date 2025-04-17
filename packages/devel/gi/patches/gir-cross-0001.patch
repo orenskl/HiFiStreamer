@@ -1,12 +1,47 @@
 diff -rNu gobject-introspection-1.76.1/gir/meson.build gobject-introspection-1.76.1.new/gir/meson.build
---- gobject-introspection-1.76.1/gir/meson.build	2023-03-23 00:43:34.000000000 +0200
-+++ gobject-introspection-1.76.1.new/gir/meson.build	2024-01-28 21:18:35.037495555 +0200
-@@ -232,6 +232,8 @@
+--- gobject-introspection-1.76.1/gir/meson.build	2023-03-22 22:43:34.000000000 +0000
++++ gobject-introspection-1.76.1.new/gir/meson.build	2025-04-05 14:56:30.456925480 +0000
+@@ -232,6 +232,18 @@
    gir_giscanner_built_files = giscanner_built_files
  endif
  
-+g_ir_scanner_env.set('CC', meson.get_compiler('c', native : false).cmd_array())
++# Set the correct tools for g-ir-scanner (and distutils)
++gcc = meson.get_compiler('c', native : false).cmd_array()[0]
++cpp = gcc.replace('gcc','cpp')
++cflags_list = get_option('c_args')
++cflags = ''
++foreach flag : cflags_list
++  cflags = cflags + flag + ' '
++endforeach
++g_ir_scanner_env.set('CC', gcc)
++g_ir_scanner_env.set('CPP',cpp)
++g_ir_scanner_env.set('CFLAGS',cflags)
 +
  glib_gir = custom_target('gir-glib',
    input: glib_files,
    output: 'GLib-2.0.gir',
+diff -rNu gobject-introspection-1.76.1/meson.build gobject-introspection-1.76.1.new/meson.build
+--- gobject-introspection-1.76.1/meson.build	2023-03-22 22:43:34.000000000 +0000
++++ gobject-introspection-1.76.1.new/meson.build	2025-04-05 14:55:18.962207682 +0000
+@@ -168,7 +168,9 @@
+ )
+ 
+ # python headers
+-cc.check_header('Python.h', dependencies: [python.dependency()], required: true)
++if not meson.is_cross_build()
++  cc.check_header('Python.h', dependencies: [python.dependency()], required: true)
++endif
+ 
+ # cairo
+ cairo_option = get_option('cairo')
+@@ -222,7 +224,9 @@
+ 
+ subdir('girepository')
+ subdir('tools')
+-subdir('giscanner')
++if not meson.is_cross_build()
++  subdir('giscanner')
++endif
+ 
+ # Not building gir data might be useful in cross-compilation
+ # scenarios where running target binaries through software emulation
