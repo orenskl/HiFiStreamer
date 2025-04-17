@@ -11,5 +11,17 @@ PKG_DEPENDS_TARGET="toolchain Python3 distutilscross:host gi"
 PKG_LONGDESC="PyGObject is a Python package which provides bindings for GObject based libraries"
 
 pre_configure_target() {
-  PKG_MESON_OPTS_TARGET="-Dpycairo=disabled -Dtests=false"
+  PKG_CONFIG_PATH="${SYSROOT_PREFIX}/usr/lib/pkgconfig"
+
+  PKG_MESON_OPTS_TARGET=" \
+    -Dpython=${TOOLCHAIN}/bin/${PKG_PYTHON_VERSION} \
+    -Dpycairo=disabled \
+    -Dtests=false"
+}
+
+post_makeinstall_target() {
+  python_remove_source
+
+  rm -rf ${INSTALL}/usr/bin
+  rm -rf ${INSTALL}/usr/share/pygobject
 }
