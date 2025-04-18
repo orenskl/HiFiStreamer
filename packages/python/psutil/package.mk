@@ -14,7 +14,7 @@ PKG_TOOLCHAIN="manual"
 
 pre_make_target() {
   export PYTHONXCPREFIX="${SYSROOT_PREFIX}/usr"
-  export LDSHARED="${TOOLCHAIN}/bin/x86_64-libreelec-linux-gnu-gcc -shared"
+  export LDSHARED="${CC} -shared"
 }
 
 make_target() {
