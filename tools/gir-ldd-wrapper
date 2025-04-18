@@ -1,0 +1,28 @@
+#!/bin/bash
+#
+# SPDX-License-Identifier: GPL-2.0-or-later
+# Copyright (C) 2025 Oren Sokoler (https://github.com/orenskl)
+# 
+#
+
+#
+# This script emulates the target ldd by running the target
+# ld.so in the qemu target environment
+#
+
+if [ $# -eq 0 ]
+then
+    echo "Usage : $0 program"
+    exit 1
+fi
+
+if [[ $ARCH == "aarch64" ]]
+then
+    qemu-aarch64 -L ${PKG_CONFIG_SYSROOT_DIR}/usr \
+                 -E LD_TRACE_LOADED_OBJECTS=1 \
+                 ${PKG_CONFIG_SYSROOT_BASE}/image/system/usr/lib/ld-linux-aarch64.so.1 \
+                 --library-path ${PKG_CONFIG_SYSROOT_DIR}/usr/lib \
+                 "$@"
+else
+    ldd "$@"
+fi

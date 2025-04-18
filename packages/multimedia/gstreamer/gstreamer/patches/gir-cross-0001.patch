@@ -1,39 +1,64 @@
-diff -rNu gstreamer-1.22.0/gst/meson.build gstreamer-1.22.0.new/gst/meson.build
---- gstreamer-1.22.0/gst/meson.build	2023-01-23 21:29:34.000000000 +0200
-+++ gstreamer-1.22.0.new/gst/meson.build	2024-01-29 21:30:40.218393721 +0200
-@@ -288,6 +288,9 @@
+diff -rNu -x '.*' gstreamer-1.22.0/gst/meson.build HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gstreamer-1.22.0/gst/meson.build
+--- gstreamer-1.22.0/gst/meson.build	2023-01-23 19:29:34.000000000 +0000
++++ HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gstreamer-1.22.0/gst/meson.build	2025-04-13 18:47:54.387688635 +0000
+@@ -288,6 +288,17 @@
        '--cflags-end']
    endif
  
 +  gst_gir_extra_args += ['--lib-dirs-envvar=DUMMY_UNUSED_ENVVAR',
-+    '--use-binary-wrapper=' + get_option('binary_wrapper')]
++    '--use-binary-wrapper=' + get_option('binary_wrapper'), '--use-ldd-wrapper=' + get_option('ldd_wrapper')]
++
++  gcc = meson.get_compiler('c', native : false).cmd_array()[0]
++  cpp = gcc.replace('gcc','cpp')
++  cflags_list = get_option('c_args')
++  cflags = ''
++  foreach flag : cflags_list
++    cflags = cflags + flag + ' '
++  endforeach
 +
    gst_incdirs += [configinc]
    gir = {
      'sources' : gst_sources + gst_headers + gst_enums + [gst_version_h],
-diff -rNu gstreamer-1.22.0/libs/gst/base/meson.build gstreamer-1.22.0.new/libs/gst/base/meson.build
---- gstreamer-1.22.0/libs/gst/base/meson.build	2023-01-23 21:29:34.000000000 +0200
-+++ gstreamer-1.22.0.new/libs/gst/base/meson.build	2024-01-29 22:56:01.251382173 +0200
-@@ -62,6 +62,8 @@
+@@ -299,6 +310,7 @@
+     'includes' : ['GLib-2.0', 'GObject-2.0', 'GModule-2.0' ],
+     'install' : true,
+     'extra_args' : gst_gir_extra_args,
++    'env' : {'CPP' : cpp, 'CFLAGS' : cflags}
+   }
+   library_def += {'gir': [gir]}
+   # When building statically the information about the gir is going to be
+diff -rNu -x '.*' gstreamer-1.22.0/libs/gst/base/meson.build HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gstreamer-1.22.0/libs/gst/base/meson.build
+--- gstreamer-1.22.0/libs/gst/base/meson.build	2023-01-23 19:29:34.000000000 +0000
++++ HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gstreamer-1.22.0/libs/gst/base/meson.build	2025-04-13 18:50:42.634738139 +0000
+@@ -62,6 +62,15 @@
  
  if build_gir
    gst_gir_extra_args = gir_init_section + [ '--c-include=gst/base/base.h' ]
 +  gst_gir_extra_args += ['--lib-dirs-envvar=DUMMY_UNUSED_ENVVAR',
-+    '--use-binary-wrapper=' + get_option('binary_wrapper')]
++    '--use-binary-wrapper=' + get_option('binary_wrapper'), '--use-ldd-wrapper=' + get_option('ldd_wrapper')]
++  gcc = meson.get_compiler('c', native : false).cmd_array()[0]
++  cpp = gcc.replace('gcc','cpp')
++  cflags_list = get_option('c_args')
++  cflags = ''
++  foreach flag : cflags_list
++    cflags = cflags + flag + ' '
++  endforeach
    gir = {
      'sources' : gst_base_sources + gst_base_headers,
      'namespace' : 'GstBase',
-@@ -75,7 +77,6 @@
+@@ -74,8 +83,8 @@
+     'includes' : ['GLib-2.0', 'GObject-2.0', 'GModule-2.0', 'Gst-1.0'],
      'install' : true,
      'extra_args' : gst_gir_extra_args,
++    'env' : {'CPP' : cpp, 'CFLAGS' : cflags}
    }
 -
    library_def += {'gir': [gir]}
    if not static_build
      gst_base_gir = gnome.generate_gir(gst_base, kwargs: gir)
-diff -rNu gstreamer-1.22.0/libs/gst/check/meson.build gstreamer-1.22.0.new/libs/gst/check/meson.build
---- gstreamer-1.22.0/libs/gst/check/meson.build	2023-01-23 21:29:34.000000000 +0200
-+++ gstreamer-1.22.0.new/libs/gst/check/meson.build	2024-01-29 22:56:15.311941224 +0200
+diff -rNu -x '.*' gstreamer-1.22.0/libs/gst/check/meson.build HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gstreamer-1.22.0/libs/gst/check/meson.build
+--- gstreamer-1.22.0/libs/gst/check/meson.build	2023-01-23 19:29:34.000000000 +0000
++++ HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gstreamer-1.22.0/libs/gst/check/meson.build	2025-04-13 18:43:32.550051257 +0000
 @@ -65,6 +65,8 @@
  gst_check_gen_sources = []
  if build_gir
@@ -43,38 +68,71 @@ diff -rNu gstreamer-1.22.0/libs/gst/check/meson.build gstreamer-1.22.0.new/libs/
    gir = {
      'sources' : gst_check_sources + gst_check_headers,
      'namespace' : 'GstCheck',
-diff -rNu gstreamer-1.22.0/libs/gst/controller/meson.build gstreamer-1.22.0.new/libs/gst/controller/meson.build
---- gstreamer-1.22.0/libs/gst/controller/meson.build	2023-01-23 21:29:34.000000000 +0200
-+++ gstreamer-1.22.0.new/libs/gst/controller/meson.build	2024-01-29 22:55:59.455307238 +0200
-@@ -60,6 +60,8 @@
+diff -rNu -x '.*' gstreamer-1.22.0/libs/gst/controller/meson.build HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gstreamer-1.22.0/libs/gst/controller/meson.build
+--- gstreamer-1.22.0/libs/gst/controller/meson.build	2023-01-23 19:29:34.000000000 +0000
++++ HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gstreamer-1.22.0/libs/gst/controller/meson.build	2025-04-13 18:51:47.478143515 +0000
+@@ -60,6 +60,15 @@
  
  if build_gir
    gst_gir_extra_args = gir_init_section + [ '--c-include=gst/controller/controller.h' ]
 +  gst_gir_extra_args += ['--lib-dirs-envvar=DUMMY_UNUSED_ENVVAR',
-+    '--use-binary-wrapper=' + get_option('binary_wrapper')]
++    '--use-binary-wrapper=' + get_option('binary_wrapper'), '--use-ldd-wrapper=' + get_option('ldd_wrapper')]
++  gcc = meson.get_compiler('c', native : false).cmd_array()[0]
++  cpp = gcc.replace('gcc','cpp')
++  cflags_list = get_option('c_args')
++  cflags = ''
++  foreach flag : cflags_list
++    cflags = cflags + flag + ' '
++  endforeach
    gir = {
      'sources' : gst_controller_sources + gst_controller_headers + [gstcontroller_h] + [gstcontroller_c],
      'namespace': 'GstController',
-diff -rNu gstreamer-1.22.0/libs/gst/net/meson.build gstreamer-1.22.0.new/libs/gst/net/meson.build
---- gstreamer-1.22.0/libs/gst/net/meson.build	2023-01-23 21:29:34.000000000 +0200
-+++ gstreamer-1.22.0.new/libs/gst/net/meson.build	2024-01-29 22:56:31.060154386 +0200
-@@ -47,6 +47,8 @@
+@@ -72,6 +81,7 @@
+     'includes' : ['GLib-2.0', 'GObject-2.0', 'GModule-2.0', 'Gst-1.0'],
+     'install' : true,
+     'extra_args' : gst_gir_extra_args,
++    'env' : {'CPP' : cpp, 'CFLAGS' : cflags}
+   }
+   library_def += {'gir': [gir]}
+   if not static_build
+diff -rNu -x '.*' gstreamer-1.22.0/libs/gst/net/meson.build HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gstreamer-1.22.0/libs/gst/net/meson.build
+--- gstreamer-1.22.0/libs/gst/net/meson.build	2023-01-23 19:29:34.000000000 +0000
++++ HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gstreamer-1.22.0/libs/gst/net/meson.build	2025-04-13 18:52:56.255572987 +0000
+@@ -47,6 +47,15 @@
  
  if build_gir
    gst_gir_extra_args = gir_init_section + [ '--c-include=gst/net/net.h' ]
 +  gst_gir_extra_args += ['--lib-dirs-envvar=DUMMY_UNUSED_ENVVAR',
-+    '--use-binary-wrapper=' + get_option('binary_wrapper')]
++    '--use-binary-wrapper=' + get_option('binary_wrapper'), '--use-ldd-wrapper=' + get_option('ldd_wrapper')]
++  gcc = meson.get_compiler('c', native : false).cmd_array()[0]
++  cpp = gcc.replace('gcc','cpp')
++  cflags_list = get_option('c_args')
++  cflags = ''
++  foreach flag : cflags_list
++    cflags = cflags + flag + ' '
++  endforeach
    gir = {
      'sources' : gst_net_sources + gst_net_headers,
      'namespace' : 'GstNet',
-diff -rNu gstreamer-1.22.0/meson_options.txt gstreamer-1.22.0.new/meson_options.txt
---- gstreamer-1.22.0/meson_options.txt	2023-01-23 21:29:34.000000000 +0200
-+++ gstreamer-1.22.0.new/meson_options.txt	2024-01-29 21:30:56.374060986 +0200
-@@ -46,3 +46,7 @@
+@@ -59,6 +68,7 @@
+     'includes' : ['GLib-2.0', 'GObject-2.0', 'GModule-2.0', 'Gio-2.0', 'Gst-1.0'],
+     'install' : true,
+     'extra_args' : gst_gir_extra_args,
++    'env' : {'CPP' : cpp, 'CFLAGS' : cflags}
+   }
+   library_def += {'gir': [gir]}
+   if not static_build
+diff -rNu -x '.*' gstreamer-1.22.0/meson_options.txt HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gstreamer-1.22.0/meson_options.txt
+--- gstreamer-1.22.0/meson_options.txt	2023-01-23 19:29:34.000000000 +0000
++++ HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gstreamer-1.22.0/meson_options.txt	2025-04-13 18:44:29.560408238 +0000
+@@ -46,3 +46,10 @@
         description : 'package origin URL to use in plugins')
  option('doc', type : 'feature', value : 'auto', yield: true,
         description: 'Enable documentation.')
 +
 +option('binary_wrapper', type: 'string',
 +  description: 'Use a wrapper to run gicompiler and binaries produced by giscanner (useful when cross-compiling)'
++)
++option('ldd_wrapper', type: 'string',
++  description: 'Use a wrapper to run ldd used by giscanner (useful when cross-compiling)'
 +)

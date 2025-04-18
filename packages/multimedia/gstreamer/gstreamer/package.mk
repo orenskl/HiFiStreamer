@@ -30,7 +30,8 @@ PKG_MESON_OPTS_TARGET="-Dgst_debug=true \
                        -Dglib-checks=disabled \
                        -Dextra-checks=disabled \
                        -Dintrospection=enabled \
-                       -Dbinary_wrapper=${PWD}/tools/gir-wrapper \
+                       -Dbinary_wrapper=${PWD}/tools/gir-bin-wrapper \
+                       -Dldd_wrapper=${PWD}/tools/gir-ldd-wrapper \
                        -Ddoc=disabled"
 
 post_makeinstall_target() {

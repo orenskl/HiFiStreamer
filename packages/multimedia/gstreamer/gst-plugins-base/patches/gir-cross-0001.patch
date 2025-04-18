@@ -1,42 +1,93 @@
-diff -rNu gst-plugins-base-1.22.0/gst-libs/gst/allocators/meson.build gst-plugins-base-1.22.0.new/gst-libs/gst/allocators/meson.build
---- gst-plugins-base-1.22.0/gst-libs/gst/allocators/meson.build	2023-01-23 21:29:34.000000000 +0200
-+++ gst-plugins-base-1.22.0.new/gst-libs/gst/allocators/meson.build	2024-01-30 09:00:11.388975597 +0200
-@@ -32,6 +32,8 @@
+diff -rNu -x '.*' gst-plugins-base-1.22.0/gst-libs/gst/allocators/meson.build HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gst-plugins-base-1.22.0/gst-libs/gst/allocators/meson.build
+--- gst-plugins-base-1.22.0/gst-libs/gst/allocators/meson.build	2023-01-23 19:29:34.000000000 +0000
++++ HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gst-plugins-base-1.22.0/gst-libs/gst/allocators/meson.build	2025-04-14 05:47:36.424369737 +0000
+@@ -32,6 +32,15 @@
  allocators_gen_sources  = []
  if build_gir
    gst_gir_extra_args = gir_init_section + [ '--c-include=gst/allocators/allocators.h' ]
 +  gst_gir_extra_args += ['--lib-dirs-envvar=DUMMY_UNUSED_ENVVAR',
-+    '--use-binary-wrapper=' + get_option('binary_wrapper')]
++    '--use-binary-wrapper=' + get_option('binary_wrapper'), '--use-ldd-wrapper=' + get_option('ldd_wrapper')]
++  gcc = meson.get_compiler('c', native : false).cmd_array()[0]
++  cpp = gcc.replace('gcc','cpp')
++  cflags_list = get_option('c_args')
++  cflags = ''
++  foreach flag : cflags_list
++    cflags = cflags + flag + ' '
++  endforeach
    gir = {
      'sources' : gst_allocators_sources + gst_allocators_headers,
      'namespace' : 'GstAllocators',
-diff -rNu gst-plugins-base-1.22.0/gst-libs/gst/app/meson.build gst-plugins-base-1.22.0.new/gst-libs/gst/app/meson.build
---- gst-plugins-base-1.22.0/gst-libs/gst/app/meson.build	2023-01-23 21:29:34.000000000 +0200
-+++ gst-plugins-base-1.22.0.new/gst-libs/gst/app/meson.build	2024-01-30 09:00:11.404829166 +0200
-@@ -42,6 +42,8 @@
+@@ -42,7 +51,8 @@
+     'includes' : ['Gst-1.0'],
+     'install' : true,
+     'extra_args' : gst_gir_extra_args,
+-    'dependencies' : [gst_dep]
++    'dependencies' : [gst_dep],
++    'env' : {'CPP' : cpp, 'CFLAGS' : cflags},
+   }
+   library_def += {'gir': [gir]}
+   if not static_build
+diff -rNu -x '.*' gst-plugins-base-1.22.0/gst-libs/gst/app/meson.build HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gst-plugins-base-1.22.0/gst-libs/gst/app/meson.build
+--- gst-plugins-base-1.22.0/gst-libs/gst/app/meson.build	2023-01-23 19:29:34.000000000 +0000
++++ HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gst-plugins-base-1.22.0/gst-libs/gst/app/meson.build	2025-04-14 05:49:25.567049003 +0000
+@@ -42,6 +42,15 @@
  library_def = {'lib': gstapp}
  if build_gir
    gst_gir_extra_args = gir_init_section + [ '--c-include=gst/app/app.h' ]
 +  gst_gir_extra_args += ['--lib-dirs-envvar=DUMMY_UNUSED_ENVVAR',
-+    '--use-binary-wrapper=' + get_option('binary_wrapper')]
++    '--use-binary-wrapper=' + get_option('binary_wrapper'), '--use-ldd-wrapper=' + get_option('ldd_wrapper')]
++  gcc = meson.get_compiler('c', native : false).cmd_array()[0]
++  cpp = gcc.replace('gcc','cpp')
++  cflags_list = get_option('c_args')
++  cflags = ''
++  foreach flag : cflags_list
++    cflags = cflags + flag + ' '
++  endforeach
    gir = {
      'sources' : app_sources + app_headers + [gstapp_c] + [gstapp_h],
      'namespace' : 'GstApp',
-diff -rNu gst-plugins-base-1.22.0/gst-libs/gst/audio/meson.build gst-plugins-base-1.22.0.new/gst-libs/gst/audio/meson.build
---- gst-plugins-base-1.22.0/gst-libs/gst/audio/meson.build	2023-01-23 21:29:34.000000000 +0200
-+++ gst-plugins-base-1.22.0.new/gst-libs/gst/audio/meson.build	2024-01-30 09:00:11.408792558 +0200
-@@ -163,6 +163,8 @@
+@@ -52,7 +61,8 @@
+     'includes' : ['Gst-1.0', 'GstBase-1.0'],
+     'install' : true,
+     'extra_args' : gst_gir_extra_args,
+-    'dependencies' : [gst_dep, gst_base_dep]
++    'dependencies' : [gst_dep, gst_base_dep],
++    'env' : {'CPP' : cpp, 'CFLAGS' : cflags},
+   }
+   library_def += {'gir': [gir]}
+   if not static_build
+diff -rNu -x '.*' gst-plugins-base-1.22.0/gst-libs/gst/audio/meson.build HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gst-plugins-base-1.22.0/gst-libs/gst/audio/meson.build
+--- gst-plugins-base-1.22.0/gst-libs/gst/audio/meson.build	2023-01-23 19:29:34.000000000 +0000
++++ HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gst-plugins-base-1.22.0/gst-libs/gst/audio/meson.build	2025-04-13 19:57:06.558760102 +0000
+@@ -163,6 +163,15 @@
  library_def = {'lib': gstaudio}
  if build_gir
    gst_gir_extra_args = gir_init_section + [ '--c-include=gst/audio/audio.h' ]
 +  gst_gir_extra_args += ['--lib-dirs-envvar=DUMMY_UNUSED_ENVVAR',
-+    '--use-binary-wrapper=' + get_option('binary_wrapper')]
++    '--use-binary-wrapper=' + get_option('binary_wrapper'), '--use-ldd-wrapper=' + get_option('ldd_wrapper')]
++  gcc = meson.get_compiler('c', native : false).cmd_array()[0]
++  cpp = gcc.replace('gcc','cpp')
++  cflags_list = get_option('c_args')
++  cflags = ''
++  foreach flag : cflags_list
++    cflags = cflags + flag + ' '
++  endforeach
    gir = {
      'sources' : audio_src + audio_headers + [gstaudio_c] + [gstaudio_h],
      'namespace' : 'GstAudio',
-diff -rNu gst-plugins-base-1.22.0/gst-libs/gst/gl/meson.build gst-plugins-base-1.22.0.new/gst-libs/gst/gl/meson.build
---- gst-plugins-base-1.22.0/gst-libs/gst/gl/meson.build	2023-01-23 21:29:34.000000000 +0200
-+++ gst-plugins-base-1.22.0.new/gst-libs/gst/gl/meson.build	2024-01-30 09:00:11.400865773 +0200
+@@ -173,7 +182,8 @@
+     'includes' : ['Gst-1.0', 'GstBase-1.0', 'GLib-2.0', 'GObject-2.0', 'GModule-2.0' ],
+     'install' : true,
+     'extra_args' : gst_gir_extra_args,
+-    'dependencies' : gstaudio_deps
++    'dependencies' : gstaudio_deps,
++    'env' : {'CPP' : cpp, 'CFLAGS' : cflags},
+   }
+   library_def = {'lib': library_def['lib'], 'gir': [gir]}
+   if not static_build
+diff -rNu -x '.*' gst-plugins-base-1.22.0/gst-libs/gst/gl/meson.build HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gst-plugins-base-1.22.0/gst-libs/gst/gl/meson.build
+--- gst-plugins-base-1.22.0/gst-libs/gst/gl/meson.build	2023-01-23 19:29:34.000000000 +0000
++++ HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gst-plugins-base-1.22.0/gst-libs/gst/gl/meson.build	2025-04-13 19:52:27.885989776 +0000
 @@ -1096,6 +1096,8 @@
    )
  
@@ -109,86 +160,189 @@ diff -rNu gst-plugins-base-1.22.0/gst-libs/gst/gl/meson.build gst-plugins-base-1
          'dependencies' : [video_dep, gst_dep, gst_base_dep]
        }
        gir_dict = gir + {'includes': gir['includes'] + ['GstGL-1.0']}
-diff -rNu gst-plugins-base-1.22.0/gst-libs/gst/pbutils/meson.build gst-plugins-base-1.22.0.new/gst-libs/gst/pbutils/meson.build
---- gst-plugins-base-1.22.0/gst-libs/gst/pbutils/meson.build	2023-01-23 21:29:34.000000000 +0200
-+++ gst-plugins-base-1.22.0.new/gst-libs/gst/pbutils/meson.build	2024-01-30 09:00:11.412755950 +0200
-@@ -73,6 +73,8 @@
+diff -rNu -x '.*' gst-plugins-base-1.22.0/gst-libs/gst/pbutils/meson.build HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gst-plugins-base-1.22.0/gst-libs/gst/pbutils/meson.build
+--- gst-plugins-base-1.22.0/gst-libs/gst/pbutils/meson.build	2023-01-23 19:29:34.000000000 +0000
++++ HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gst-plugins-base-1.22.0/gst-libs/gst/pbutils/meson.build	2025-04-14 05:45:33.826585613 +0000
+@@ -73,6 +73,15 @@
  pbutils_gen_sources = [gstpbutils_h, gst_pbutils_version_h]
  if build_gir
    gst_gir_extra_args = gir_init_section + [ '--c-include=gst/pbutils/pbutils.h' ]
 +  gst_gir_extra_args += ['--lib-dirs-envvar=DUMMY_UNUSED_ENVVAR',
-+    '--use-binary-wrapper=' + get_option('binary_wrapper')]
++    '--use-binary-wrapper=' + get_option('binary_wrapper'), '--use-ldd-wrapper=' + get_option('ldd_wrapper')]
++  gcc = meson.get_compiler('c', native : false).cmd_array()[0]
++  cpp = gcc.replace('gcc','cpp')
++  cflags_list = get_option('c_args')
++  cflags = ''
++  foreach flag : cflags_list
++    cflags = cflags + flag + ' '
++  endforeach
    gir = {
      'sources' : pbutils_sources + pbutils_headers + [gstpbutils_h, gst_pbutils_version_h],
      'namespace' : 'GstPbutils',
-diff -rNu gst-plugins-base-1.22.0/gst-libs/gst/rtp/meson.build gst-plugins-base-1.22.0.new/gst-libs/gst/rtp/meson.build
---- gst-plugins-base-1.22.0/gst-libs/gst/rtp/meson.build	2023-01-23 21:29:34.000000000 +0200
-+++ gst-plugins-base-1.22.0.new/gst-libs/gst/rtp/meson.build	2024-01-30 09:00:11.388975597 +0200
-@@ -59,6 +59,8 @@
+@@ -83,7 +92,8 @@
+     'includes' : ['Gst-1.0', 'GstBase-1.0', 'GstAudio-1.0', 'GstVideo-1.0'],
+     'install' : true,
+     'extra_args' : gst_gir_extra_args,
+-    'dependencies' : gstpbutils_deps
++    'dependencies' : gstpbutils_deps,
++    'env' : {'CPP' : cpp, 'CFLAGS' : cflags},
+   }
+   library_def = {'lib': library_def['lib'], 'gir': [gir]}
+   if not static_build
+diff -rNu -x '.*' gst-plugins-base-1.22.0/gst-libs/gst/rtp/meson.build HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gst-plugins-base-1.22.0/gst-libs/gst/rtp/meson.build
+--- gst-plugins-base-1.22.0/gst-libs/gst/rtp/meson.build	2023-01-23 19:29:34.000000000 +0000
++++ HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gst-plugins-base-1.22.0/gst-libs/gst/rtp/meson.build	2025-04-13 19:58:10.975168010 +0000
+@@ -59,6 +59,15 @@
  rtp_gen_sources = [gstrtp_enum_h]
  if build_gir
    gst_gir_extra_args = gir_init_section + [ '--c-include=gst/rtp/rtp.h' ]
 +  gst_gir_extra_args += ['--lib-dirs-envvar=DUMMY_UNUSED_ENVVAR',
-+    '--use-binary-wrapper=' + get_option('binary_wrapper')]
++    '--use-binary-wrapper=' + get_option('binary_wrapper'), '--use-ldd-wrapper=' + get_option('ldd_wrapper')]
++  gcc = meson.get_compiler('c', native : false).cmd_array()[0]
++  cpp = gcc.replace('gcc','cpp')
++  cflags_list = get_option('c_args')
++  cflags = ''
++  foreach flag : cflags_list
++    cflags = cflags + flag + ' '
++  endforeach
    gir = {
      'sources' : rtp_sources + rtp_headers + [gstrtp_enum_c] + [gstrtp_enum_h],
      'namespace' : 'GstRtp',
-diff -rNu gst-plugins-base-1.22.0/gst-libs/gst/rtsp/meson.build gst-plugins-base-1.22.0.new/gst-libs/gst/rtsp/meson.build
---- gst-plugins-base-1.22.0/gst-libs/gst/rtsp/meson.build	2023-01-23 21:29:34.000000000 +0200
-+++ gst-plugins-base-1.22.0.new/gst-libs/gst/rtsp/meson.build	2024-01-30 09:00:11.408792558 +0200
-@@ -64,6 +64,8 @@
+@@ -69,7 +78,8 @@
+     'includes' : ['Gst-1.0', 'GstBase-1.0'],
+     'install' : true,
+     'extra_args' : gst_gir_extra_args,
+-    'dependencies' : gstrtp_deps
++    'dependencies' : gstrtp_deps,
++    'env' : {'CPP' : cpp, 'CFLAGS' : cflags},
+   }
+   library_def = {'lib': library_def['lib'], 'gir': [gir]}
+   if not static_build
+diff -rNu -x '.*' gst-plugins-base-1.22.0/gst-libs/gst/rtsp/meson.build HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gst-plugins-base-1.22.0/gst-libs/gst/rtsp/meson.build
+--- gst-plugins-base-1.22.0/gst-libs/gst/rtsp/meson.build	2023-01-23 19:29:34.000000000 +0000
++++ HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gst-plugins-base-1.22.0/gst-libs/gst/rtsp/meson.build	2025-04-14 05:48:33.762725838 +0000
+@@ -64,6 +64,15 @@
  rtsp_gen_sources = [gstrtsp_h]
  if build_gir
    gst_gir_extra_args = gir_init_section + [ '--c-include=gst/rtsp/rtsp.h' ]
 +  gst_gir_extra_args += ['--lib-dirs-envvar=DUMMY_UNUSED_ENVVAR',
-+    '--use-binary-wrapper=' + get_option('binary_wrapper')]
++    '--use-binary-wrapper=' + get_option('binary_wrapper'), '--use-ldd-wrapper=' + get_option('ldd_wrapper')]
++  gcc = meson.get_compiler('c', native : false).cmd_array()[0]
++  cpp = gcc.replace('gcc','cpp')
++  cflags_list = get_option('c_args')
++  cflags = ''
++  foreach flag : cflags_list
++    cflags = cflags + flag + ' '
++  endforeach
    gir = {
      'sources' : rtsp_sources + rtsp_headers + [gstrtsp_c] + [gstrtsp_h],
      'namespace' : 'GstRtsp',
-diff -rNu gst-plugins-base-1.22.0/gst-libs/gst/sdp/meson.build gst-plugins-base-1.22.0.new/gst-libs/gst/sdp/meson.build
---- gst-plugins-base-1.22.0/gst-libs/gst/sdp/meson.build	2023-01-23 21:29:34.000000000 +0200
-+++ gst-plugins-base-1.22.0.new/gst-libs/gst/sdp/meson.build	2024-01-30 09:00:11.408792558 +0200
-@@ -33,6 +33,8 @@
+@@ -74,7 +83,8 @@
+     'includes' : ['Gst-1.0', 'GstBase-1.0', 'GstSdp-1.0', 'Gio-2.0'],
+     'install' : true,
+     'extra_args' : gst_gir_extra_args,
+-    'dependencies' : gstrtsp_deps + [sdp_dep]
++    'dependencies' : gstrtsp_deps + [sdp_dep],
++    'env' : {'CPP' : cpp, 'CFLAGS' : cflags},
+   }
+   library_def = {'lib': library_def['lib'], 'gir': [gir]}
+   if not static_build
+diff -rNu -x '.*' gst-plugins-base-1.22.0/gst-libs/gst/sdp/meson.build HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gst-plugins-base-1.22.0/gst-libs/gst/sdp/meson.build
+--- gst-plugins-base-1.22.0/gst-libs/gst/sdp/meson.build	2023-01-23 19:29:34.000000000 +0000
++++ HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gst-plugins-base-1.22.0/gst-libs/gst/sdp/meson.build	2025-04-14 05:46:39.126004891 +0000
+@@ -33,6 +33,15 @@
  
  if build_gir
    gst_gir_extra_args = gir_init_section + [ '--c-include=gst/sdp/sdp.h' ]
 +  gst_gir_extra_args += ['--lib-dirs-envvar=DUMMY_UNUSED_ENVVAR',
-+    '--use-binary-wrapper=' + get_option('binary_wrapper')]
++    '--use-binary-wrapper=' + get_option('binary_wrapper'), '--use-ldd-wrapper=' + get_option('ldd_wrapper')]
++  gcc = meson.get_compiler('c', native : false).cmd_array()[0]
++  cpp = gcc.replace('gcc','cpp')
++  cflags_list = get_option('c_args')
++  cflags = ''
++  foreach flag : cflags_list
++    cflags = cflags + flag + ' '
++  endforeach
    gir = {
      'sources' : gst_sdp_sources + gst_sdp_headers,
      'namespace' : 'GstSdp',
-diff -rNu gst-plugins-base-1.22.0/gst-libs/gst/tag/meson.build gst-plugins-base-1.22.0.new/gst-libs/gst/tag/meson.build
---- gst-plugins-base-1.22.0/gst-libs/gst/tag/meson.build	2023-01-23 21:29:34.000000000 +0200
-+++ gst-plugins-base-1.22.0.new/gst-libs/gst/tag/meson.build	2024-01-30 09:00:11.388975597 +0200
-@@ -97,6 +97,8 @@
+@@ -43,7 +52,8 @@
+     'includes' : ['Gst-1.0'],
+     'install' : true,
+     'extra_args' : gst_gir_extra_args,
+-    'dependencies' : sdp_deps
++    'dependencies' : sdp_deps,
++    'env' : {'CPP' : cpp, 'CFLAGS' : cflags},
+   }
+ 
+   library_def = {'lib': library_def['lib'], 'gir': [gir]}
+diff -rNu -x '.*' gst-plugins-base-1.22.0/gst-libs/gst/tag/meson.build HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gst-plugins-base-1.22.0/gst-libs/gst/tag/meson.build
+--- gst-plugins-base-1.22.0/gst-libs/gst/tag/meson.build	2023-01-23 19:29:34.000000000 +0000
++++ HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gst-plugins-base-1.22.0/gst-libs/gst/tag/meson.build	2025-04-13 19:52:48.141122847 +0000
+@@ -97,6 +97,15 @@
  
  if build_gir
    gst_gir_extra_args = gir_init_section + [ '--c-include=gst/tag/tag.h' ]
 +  gst_gir_extra_args += ['--lib-dirs-envvar=DUMMY_UNUSED_ENVVAR',
-+    '--use-binary-wrapper=' + get_option('binary_wrapper')]
++    '--use-binary-wrapper=' + get_option('binary_wrapper'), '--use-ldd-wrapper=' + get_option('ldd_wrapper')]
++  gcc = meson.get_compiler('c', native : false).cmd_array()[0]
++  cpp = gcc.replace('gcc','cpp')
++  cflags_list = get_option('c_args')
++  cflags = ''
++  foreach flag : cflags_list
++    cflags = cflags + flag + ' '
++  endforeach
    gir = {
      'sources' : tag_sources + tag_headers + [gsttag_h] + [gsttag_c],
      'namespace' : 'GstTag',
-diff -rNu gst-plugins-base-1.22.0/gst-libs/gst/video/meson.build gst-plugins-base-1.22.0.new/gst-libs/gst/video/meson.build
---- gst-plugins-base-1.22.0/gst-libs/gst/video/meson.build	2023-01-23 21:29:34.000000000 +0200
-+++ gst-plugins-base-1.22.0.new/gst-libs/gst/video/meson.build	2024-01-30 09:00:11.388975597 +0200
-@@ -157,6 +157,8 @@
+@@ -108,6 +117,7 @@
+     'install' : true,
+     'extra_args' : gst_gir_extra_args,
+     'dependencies' : tag_deps,
++    'env' : {'CPP' : cpp, 'CFLAGS' : cflags},
+   }
+   library_def = {'lib': library_def['lib'], 'gir': [gir]}
+   if not static_build
+diff -rNu -x '.*' gst-plugins-base-1.22.0/gst-libs/gst/video/meson.build HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gst-plugins-base-1.22.0/gst-libs/gst/video/meson.build
+--- gst-plugins-base-1.22.0/gst-libs/gst/video/meson.build	2023-01-23 19:29:34.000000000 +0000
++++ HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gst-plugins-base-1.22.0/gst-libs/gst/video/meson.build	2025-04-13 19:55:48.910262461 +0000
+@@ -157,6 +157,15 @@
  
  if build_gir
    gst_gir_extra_args = gir_init_section + [ '--c-include=gst/video/video.h' ]
 +  gst_gir_extra_args += ['--lib-dirs-envvar=DUMMY_UNUSED_ENVVAR',
-+    '--use-binary-wrapper=' + get_option('binary_wrapper')]
++    '--use-binary-wrapper=' + get_option('binary_wrapper'), '--use-ldd-wrapper=' + get_option('ldd_wrapper')]
++  gcc = meson.get_compiler('c', native : false).cmd_array()[0]
++  cpp = gcc.replace('gcc','cpp')
++  cflags_list = get_option('c_args')
++  cflags = ''
++  foreach flag : cflags_list
++    cflags = cflags + flag + ' '
++  endforeach
    gir = {
      'sources' : video_sources + video_headers + [gstvideo_c] + [gstvideo_h],
      'namespace' : 'GstVideo',
-diff -rNu gst-plugins-base-1.22.0/meson_options.txt gst-plugins-base-1.22.0.new/meson_options.txt
---- gst-plugins-base-1.22.0/meson_options.txt	2023-01-23 21:29:34.000000000 +0200
-+++ gst-plugins-base-1.22.0.new/meson_options.txt	2024-01-30 08:42:32.763586541 +0200
-@@ -88,3 +88,7 @@
+@@ -167,7 +176,8 @@
+     'includes' : ['Gst-1.0','GstBase-1.0'],
+     'install' : true,
+     'extra_args' : gst_gir_extra_args,
+-    'dependencies' : gstvideo_deps
++    'dependencies' : gstvideo_deps,
++    'env' : {'CPP' : cpp, 'CFLAGS' : cflags},
+   }
+   library_def += {'gir': [gir]}
+   if not static_build
+diff -rNu -x '.*' gst-plugins-base-1.22.0/meson_options.txt HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gst-plugins-base-1.22.0/meson_options.txt
+--- gst-plugins-base-1.22.0/meson_options.txt	2023-01-23 19:29:34.000000000 +0000
++++ HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gst-plugins-base-1.22.0/meson_options.txt	2025-04-13 19:53:01.007206389 +0000
+@@ -88,3 +88,10 @@
         description : 'package origin URL to use in plugins')
  option('doc', type : 'feature', value : 'auto', yield: true,
         description: 'Enable documentation.')
 +
 +option('binary_wrapper', type: 'string',
 +  description: 'Use a wrapper to run gicompiler and binaries produced by giscanner (useful when cross-compiling)'
++)
++option('ldd_wrapper', type: 'string',
++  description: 'Use a wrapper to run ldd used by giscanner (useful when cross-compiling)'
 +)
