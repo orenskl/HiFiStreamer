@@ -54,10 +54,10 @@
     VULKAN="no"
 
   # Displayserver to use (wl / no)
-    DISPLAYSERVER="no"
+    DISPLAYSERVER="wl"
 
   # Windowmanager to use (weston / no)
-    WINDOWMANAGER="no"
+    WINDOWMANAGER="weston"
 
   # Xorg Graphic drivers to use (all / vc4 / none)
   # Space separated list is supported,
