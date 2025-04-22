@@ -1,27 +1,24 @@
 # SPDX-License-Identifier: GPL-2.0-or-later
-# Copyright (C) 2023 Oren Sokoler
+# Copyright (C) 2009-2016 Stephan Raue (stephan@openelec.tv)
+# Copyright (C) 2019-present Team LibreELEC (https://libreelec.tv)
+# Copyright (C) 2022-present Team CoreELEC (https://coreelec.org)
 
 PKG_NAME="dbus-python"
-PKG_VERSION="1.2.18"
-PKG_SHA256="92bdd1e68b45596c833307a5ff4b217ee6929a1502f5341bae28fd120acf7260"
-PKG_LICENSE="MIT"
-PKG_SITE="http://www.freedesktop.org/wiki/Software/DBusBindings"
-PKG_URL="https://dbus.freedesktop.org/releases/dbus-python/dbus-python-${PKG_VERSION}.tar.gz"
-PKG_DEPENDS_TARGET="toolchain Python3 setuptools:target distutilscross"
-PKG_LONGDESC="Python bindings for libdbus"
-PKG_TOOLCHAIN="manual"
+PKG_VERSION="1.3.2"
+PKG_SHA256="ad67819308618b5069537be237f8e68ca1c7fcc95ee4a121fe6845b1418248f8"
+PKG_LICENSE="GPL"
+PKG_SITE="https://freedesktop.org/wiki/Software/dbus"
+PKG_URL="https://dbus.freedesktop.org/releases/dbus-python/${PKG_NAME}-${PKG_VERSION}.tar.gz"
+PKG_DEPENDS_TARGET="toolchain Python3 dbus"
+PKG_LONGDESC="D-BUS is a message bus, used for sending messages between applications."
+PKG_BUILD_FLAGS="+lto"
+PKG_TOOLCHAIN="autotools"
 
-pre_make_target() {
-  export PYTHONXCPREFIX="${SYSROOT_PREFIX}/usr"
-}
-
-make_target() {
-  cd ${PKG_BUILD}
-  python3 setup.py build --cross-compile
-}
-
-makeinstall_target() {
-  python3 setup.py install --root=${INSTALL} --prefix=/usr
+pre_configure_target() {
+  export PKG_CONFIG_PATH="${SYSROOT_PREFIX}/usr/lib/pkgconfig"
+  export PYTHON_CONFIG="${SYSROOT_PREFIX}/usr/bin/python3-config"
+  export PYTHON_INCLUDES="$(${SYSROOT_PREFIX}/usr/bin/python3-config --includes)"
+  export PYTHON_LIBS="$(${SYSROOT_PREFIX}/usr/bin/python3-config --ldflags --embed)"
 }
 
 post_makeinstall_target() {

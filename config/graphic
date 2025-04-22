@@ -140,7 +140,7 @@ get_graphicdrivers() {
   fi
 
   if listcontains "${GRAPHIC_DRIVERS}" "virtio"; then
-    GALLIUM_DRIVERS+=" virgl"
+    GALLIUM_DRIVERS+=" virgl swrast"
   fi
 
   if listcontains "${GRAPHIC_DRIVERS}" "vmware"; then
