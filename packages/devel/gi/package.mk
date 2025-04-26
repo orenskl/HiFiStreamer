@@ -26,4 +26,8 @@ post_makeinstall_target(){
   rm -rf ${INSTALL}/usr/lib/gobject-introspection
   rm -rf ${INSTALL}/usr/lib/pkgconfig
   
+  # gi binaries must be executed from toolchain
+  sed -e "s#bindir=\${prefix}/bin#bindir=${TOOLCHAIN}/bin#" -i "${SYSROOT_PREFIX}/usr/lib/pkgconfig/"gobject-introspection-1.0.pc
+  # gir file should be included from toolchain
+  sed -e "s#girdir=\${datadir}/gir-1\.0#girdir=${SYSROOT_PREFIX}/usr/share/gir-1\.0#" -i "${SYSROOT_PREFIX}/usr/lib/pkgconfig/"gobject-introspection-1.0.pc
 }
