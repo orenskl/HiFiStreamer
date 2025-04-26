@@ -7,7 +7,7 @@ PKG_SHA256="0c8d256349cbccbc7080992e590456c8a66690dbe547f2d481c86ac18cee5ef0"
 PKG_LICENSE="GPL"
 PKG_SITE="https://wpewebkit.org"
 PKG_URL="https://wpewebkit.org/releases/wpewebkit-${PKG_VERSION}.tar.xz"
-PKG_DEPENDS_TARGET="toolchain cairo harfbuzz-icu libjpeg-turbo webp libwpe libtasn1 libgcrypt"
+PKG_DEPENDS_TARGET="toolchain cairo harfbuzz-icu libjpeg-turbo webp libwpe libtasn1 libgcrypt ruby:host unifdef:host"
 PKG_LONGDESC="WPE is the reference WebKit port for embedded and low-consumption computer devices"
 
 PKG_CMAKE_OPTS_TARGET="-DPORT=WPE \

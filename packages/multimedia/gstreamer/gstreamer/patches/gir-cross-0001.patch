@@ -1,7 +1,7 @@
-diff -rNu -x '.*' gstreamer-1.22.0/gst/meson.build HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gstreamer-1.22.0/gst/meson.build
+diff -rNu -x '.*' gstreamer-1.22.0/gst/meson.build HiFiStreamer/build.HiFiStreamer-Generic.x86_64-0.8.0/build/gstreamer-1.22.0/gst/meson.build
 --- gstreamer-1.22.0/gst/meson.build	2023-01-23 19:29:34.000000000 +0000
-+++ HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gstreamer-1.22.0/gst/meson.build	2025-04-13 18:47:54.387688635 +0000
-@@ -288,6 +288,17 @@
++++ HiFiStreamer/build.HiFiStreamer-Generic.x86_64-0.8.0/build/gstreamer-1.22.0/gst/meson.build	2025-04-24 08:23:46.472380268 +0000
+@@ -288,6 +288,18 @@
        '--cflags-end']
    endif
  
@@ -15,21 +15,24 @@ diff -rNu -x '.*' gstreamer-1.22.0/gst/meson.build HiFiStreamer/build.HiFiStream
 +  foreach flag : cflags_list
 +    cflags = cflags + flag + ' '
 +  endforeach
++  sysroot = meson.get_external_property('root')
 +
    gst_incdirs += [configinc]
    gir = {
      'sources' : gst_sources + gst_headers + gst_enums + [gst_version_h],
-@@ -299,6 +310,7 @@
+@@ -298,7 +310,9 @@
+     'export_packages' : pkg_name,
      'includes' : ['GLib-2.0', 'GObject-2.0', 'GModule-2.0' ],
      'install' : true,
++    'include_directories' : [ sysroot + '/share/gir-1.0' ],
      'extra_args' : gst_gir_extra_args,
 +    'env' : {'CPP' : cpp, 'CFLAGS' : cflags}
    }
    library_def += {'gir': [gir]}
    # When building statically the information about the gir is going to be
-diff -rNu -x '.*' gstreamer-1.22.0/libs/gst/base/meson.build HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gstreamer-1.22.0/libs/gst/base/meson.build
+diff -rNu -x '.*' gstreamer-1.22.0/libs/gst/base/meson.build HiFiStreamer/build.HiFiStreamer-Generic.x86_64-0.8.0/build/gstreamer-1.22.0/libs/gst/base/meson.build
 --- gstreamer-1.22.0/libs/gst/base/meson.build	2023-01-23 19:29:34.000000000 +0000
-+++ HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gstreamer-1.22.0/libs/gst/base/meson.build	2025-04-13 18:50:42.634738139 +0000
++++ HiFiStreamer/build.HiFiStreamer-Generic.x86_64-0.8.0/build/gstreamer-1.22.0/libs/gst/base/meson.build	2025-04-24 07:42:01.452180369 +0000
 @@ -62,6 +62,15 @@
  
  if build_gir
@@ -56,9 +59,9 @@ diff -rNu -x '.*' gstreamer-1.22.0/libs/gst/base/meson.build HiFiStreamer/build.
    library_def += {'gir': [gir]}
    if not static_build
      gst_base_gir = gnome.generate_gir(gst_base, kwargs: gir)
-diff -rNu -x '.*' gstreamer-1.22.0/libs/gst/check/meson.build HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gstreamer-1.22.0/libs/gst/check/meson.build
+diff -rNu -x '.*' gstreamer-1.22.0/libs/gst/check/meson.build HiFiStreamer/build.HiFiStreamer-Generic.x86_64-0.8.0/build/gstreamer-1.22.0/libs/gst/check/meson.build
 --- gstreamer-1.22.0/libs/gst/check/meson.build	2023-01-23 19:29:34.000000000 +0000
-+++ HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gstreamer-1.22.0/libs/gst/check/meson.build	2025-04-13 18:43:32.550051257 +0000
++++ HiFiStreamer/build.HiFiStreamer-Generic.x86_64-0.8.0/build/gstreamer-1.22.0/libs/gst/check/meson.build	2025-04-24 07:42:01.452180369 +0000
 @@ -65,6 +65,8 @@
  gst_check_gen_sources = []
  if build_gir
@@ -68,9 +71,9 @@ diff -rNu -x '.*' gstreamer-1.22.0/libs/gst/check/meson.build HiFiStreamer/build
    gir = {
      'sources' : gst_check_sources + gst_check_headers,
      'namespace' : 'GstCheck',
-diff -rNu -x '.*' gstreamer-1.22.0/libs/gst/controller/meson.build HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gstreamer-1.22.0/libs/gst/controller/meson.build
+diff -rNu -x '.*' gstreamer-1.22.0/libs/gst/controller/meson.build HiFiStreamer/build.HiFiStreamer-Generic.x86_64-0.8.0/build/gstreamer-1.22.0/libs/gst/controller/meson.build
 --- gstreamer-1.22.0/libs/gst/controller/meson.build	2023-01-23 19:29:34.000000000 +0000
-+++ HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gstreamer-1.22.0/libs/gst/controller/meson.build	2025-04-13 18:51:47.478143515 +0000
++++ HiFiStreamer/build.HiFiStreamer-Generic.x86_64-0.8.0/build/gstreamer-1.22.0/libs/gst/controller/meson.build	2025-04-24 07:42:01.452180369 +0000
 @@ -60,6 +60,15 @@
  
  if build_gir
@@ -95,9 +98,9 @@ diff -rNu -x '.*' gstreamer-1.22.0/libs/gst/controller/meson.build HiFiStreamer/
    }
    library_def += {'gir': [gir]}
    if not static_build
-diff -rNu -x '.*' gstreamer-1.22.0/libs/gst/net/meson.build HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gstreamer-1.22.0/libs/gst/net/meson.build
+diff -rNu -x '.*' gstreamer-1.22.0/libs/gst/net/meson.build HiFiStreamer/build.HiFiStreamer-Generic.x86_64-0.8.0/build/gstreamer-1.22.0/libs/gst/net/meson.build
 --- gstreamer-1.22.0/libs/gst/net/meson.build	2023-01-23 19:29:34.000000000 +0000
-+++ HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gstreamer-1.22.0/libs/gst/net/meson.build	2025-04-13 18:52:56.255572987 +0000
++++ HiFiStreamer/build.HiFiStreamer-Generic.x86_64-0.8.0/build/gstreamer-1.22.0/libs/gst/net/meson.build	2025-04-24 07:42:01.452180369 +0000
 @@ -47,6 +47,15 @@
  
  if build_gir
@@ -122,9 +125,20 @@ diff -rNu -x '.*' gstreamer-1.22.0/libs/gst/net/meson.build HiFiStreamer/build.H
    }
    library_def += {'gir': [gir]}
    if not static_build
-diff -rNu -x '.*' gstreamer-1.22.0/meson_options.txt HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gstreamer-1.22.0/meson_options.txt
+diff -rNu -x '.*' gstreamer-1.22.0/meson.build HiFiStreamer/build.HiFiStreamer-Generic.x86_64-0.8.0/build/gstreamer-1.22.0/meson.build
+--- gstreamer-1.22.0/meson.build	2023-01-23 19:29:34.000000000 +0000
++++ HiFiStreamer/build.HiFiStreamer-Generic.x86_64-0.8.0/build/gstreamer-1.22.0/meson.build	2025-04-24 08:20:57.289498007 +0000
+@@ -1,6 +1,6 @@
+ project('gstreamer', 'c',
+   version : '1.22.0',
+-  meson_version : '>= 0.62',
++  meson_version : '>= 1.2.0',
+   default_options : [ 'warning_level=1',
+                       'buildtype=debugoptimized' ])
+ 
+diff -rNu -x '.*' gstreamer-1.22.0/meson_options.txt HiFiStreamer/build.HiFiStreamer-Generic.x86_64-0.8.0/build/gstreamer-1.22.0/meson_options.txt
 --- gstreamer-1.22.0/meson_options.txt	2023-01-23 19:29:34.000000000 +0000
-+++ HiFiStreamer/build.HiFiStreamer-RPi5.arm-0.8.0/build/gstreamer-1.22.0/meson_options.txt	2025-04-13 18:44:29.560408238 +0000
++++ HiFiStreamer/build.HiFiStreamer-Generic.x86_64-0.8.0/build/gstreamer-1.22.0/meson_options.txt	2025-04-24 07:42:01.453180375 +0000
 @@ -46,3 +46,10 @@
         description : 'package origin URL to use in plugins')
  option('doc', type : 'feature', value : 'auto', yield: true,
