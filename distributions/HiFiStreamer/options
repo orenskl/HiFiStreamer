@@ -41,7 +41,7 @@
   HARDENING_SUPPORT="no"
 
 # Default supported get handlers (archive, git, file etc.)
-  GET_HANDLER_SUPPORT="archive file"
+  GET_HANDLER_SUPPORT="archive file git"
 
 # use local ccache on build host, if available, for early package
 # builds before ccache has been built

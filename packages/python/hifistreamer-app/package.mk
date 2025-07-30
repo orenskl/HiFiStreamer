@@ -2,12 +2,11 @@
 # Copyright (C) 2023 Oren Sokoler
 
 PKG_NAME="hifistreamer-app"
-PKG_VERSION="0.0.8"
-PKG_SHA256="5ebaed178a52b23ff56f13c480033c2000754794276e52d5c5d7e88c445a7bb3"
+PKG_VERSION="0.0.10"
+PKG_SHA256="b46310ef2bea8c6ad86f516715afe678aadb99754dacba570c72560a4d885b0e"
 PKG_LICENSE="MIT"
 PKG_SITE="https://github.com/orenskl/hifistreamer-app"
-#PKG_URL="https://github.com/orenskl/hifistreamer-app/releases/download/${PKG_VERSION}/hifistreamer-app-${PKG_VERSION}.tar.gz"
-PKG_URL="file:///home/ubuntu/projects/hifistreamer-app-${PKG_VERSION}.tar.gz"
+PKG_URL="https://github.com/orenskl/hifistreamer-app/releases/download/${PKG_VERSION}/hifistreamer-app-${PKG_VERSION}.tar.gz"
 PKG_DEPENDS_TARGET="toolchain Python3 setuptools:target tornado psutil pyconnman"
 PKG_LONGDESC="User Interface and backend application for HiFiStreamer"
 PKG_TOOLCHAIN="manual"
