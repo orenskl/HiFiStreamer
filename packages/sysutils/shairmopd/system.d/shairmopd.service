@@ -1,0 +1,9 @@
+[Unit]
+After=shairport-sync.service
+After=mopidy.service
+
+[Service]
+ExecStart=/usr/bin/shairmopd
+
+[Install]
+WantedBy=multi-user.target
