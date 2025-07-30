@@ -1,0 +1,11 @@
+diff -rNu nqptp-1.2.3/configure.ac nqptp-1.2.3.new/configure.ac
+--- nqptp-1.2.3/configure.ac	2023-09-04 16:17:36.000000000 +0000
++++ nqptp-1.2.3.new/configure.ac	2025-06-24 06:03:29.008616205 +0000
+@@ -68,7 +68,6 @@
+ AC_TYPE_UINT32_T
+ 
+ # Checks for library functions.
+-AC_FUNC_MALLOC
+ AC_CHECK_FUNCS([clock_gettime inet_ntoa memset select socket strerror])
+ 
+ AC_CONFIG_FILES([Makefile nqptp.service])
