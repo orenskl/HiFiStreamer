@@ -2,12 +2,12 @@
 # Copyright (C) 2023 Oren Sokoler
 
 PKG_NAME="tidalapi"
-PKG_VERSION="0.7.3"
-PKG_SHA256="85cca90e753414ff6b8ad58d57d579045d80f04dd123f22a4af710a8d59abfe8"
+PKG_VERSION="0.8.8"
+PKG_SHA256="0347abe02ed8bec26ebd7437814b18cbd849796b7af37294c0b5d4f7891a8dda"
 PKG_LICENSE="LGPLv3"
 PKG_SITE="https://pypi.org/project/tidalapi/"
 PKG_URL="https://github.com/tamland/python-tidal/archive/refs/tags/v${PKG_VERSION}.tar.gz"
-PKG_DEPENDS_TARGET="Python3 setuptools python-dateutil"
+PKG_DEPENDS_TARGET="Python3 setuptools requests python-dateutil typing-extensions ratelimit isodate mpegdash pyaes"
 PKG_LONGDESC="Python API for TIDAL music streaming service"
 PKG_TOOLCHAIN="manual"
 

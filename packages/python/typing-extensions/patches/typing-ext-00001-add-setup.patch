@@ -1,0 +1,29 @@
+--- typing_extensions-4.12.2/setup.py	1970-01-01 00:00:00.000000000 +0000
++++ typing_extensions-4.12.2.new/setup.py	2025-10-29 10:54:44.913959541 +0000
+@@ -0,0 +1,26 @@
++# -*- coding: utf-8 -*-
++from setuptools import setup
++
++package_dir = \
++{'': 'src'}
++
++modules = \
++['typing_extensions']
++setup_kwargs = {
++    'name': 'typing_extensions',
++    'version': '4.12.2',
++    'description': 'Backported and Experimental Type Hints for Python 3.8+',
++    'long_description': "# Typing Extensions\n\n[![Chat at https://gitter.im/python/typing](https://badges.gitter.im/python/typing.svg)](https://gitter.im/python/typing)\n\n[Documentation](https://typing-extensions.readthedocs.io/en/latest/#) –\n[PyPI](https://pypi.org/project/typing-extensions/)\n\n## Overview\n\nThe `typing_extensions` module serves two related purposes:\n\n- Enable use of new type system features on older Python versions. For example,\n  `typing.TypeGuard` is new in Python 3.10, but `typing_extensions` allows\n  users on previous Python versions to use it too.\n- Enable experimentation with new type system PEPs before they are accepted and\n  added to the `typing` module.\n\n`typing_extensions` is treated specially by static type checkers such as\nmypy and pyright. Objects defined in `typing_extensions` are treated the same\nway as equivalent forms in `typing`.\n\n`typing_extensions` uses\n[Semantic Versioning](https://semver.org/). The\nmajor version will be incremented only for backwards-incompatible changes.\nTherefore, it's safe to depend\non `typing_extensions` like this: `typing_extensions >=x.y, <(x+1)`,\nwhere `x.y` is the first version that includes all features you need.\n\n## Included items\n\nSee [the documentation](https://typing-extensions.readthedocs.io/en/latest/#) for a\ncomplete listing of module contents.\n\n## Contributing\n\nSee [CONTRIBUTING.md](https://github.com/python/typing_extensions/blob/main/CONTRIBUTING.md)\nfor how to contribute to `typing_extensions`.\n",
++    'author': 'Guido van Rossum, Jukka Lehtosalo, Łukasz Langa, Michael Lee',
++    'author_email': 'levkivskyi@gmail.com',
++    'maintainer': 'None',
++    'maintainer_email': 'None',
++    'url': 'https://github.com/python/typing_extensions',
++    'package_dir': package_dir,
++    'py_modules': modules,
++    'python_requires': '>=3.8',
++}
++
++
++setup(**setup_kwargs)
++
