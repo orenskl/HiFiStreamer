@@ -2,11 +2,11 @@
 # Copyright (C) 2023 Oren Sokoler
 
 PKG_NAME="mopidy-iris"
-PKG_VERSION="3.69.3"
-PKG_SHA256="3c40179daa62cb1a338a3474e7723bcd061160b783395ef5f4bd106cedabe2be"
+PKG_VERSION="3.70.0"
+PKG_SHA256="99dff56e54d3b6388001bfe388b13611f8929485301206bc53b3a2b8a6b8eba9"
 PKG_LICENSE="Apache-2.0"
 PKG_SITE="https://pypi.org/project/Mopidy-Iris/"
-PKG_URL="https://files.pythonhosted.org/packages/90/2d/725b320e5cd0470a3ac4afd0f2d858c72a540dc14217d99d2606d7ebaf77/Mopidy-Iris-${PKG_VERSION}.tar.gz"
+PKG_URL="https://files.pythonhosted.org/packages/5d/9c/78561ea36ab73ae5bfe1dfd16ac1e0dcad6ac9303d969f906f4b7e37ba12/mopidy_iris-${PKG_VERSION}.tar.gz"
 PKG_DEPENDS_TARGET="Python3 setuptools mopidy"
 PKG_LONGDESC="Discover, explore and manage your music library across multiple sources with this beautiful web-based interface."
 PKG_TOOLCHAIN="manual"
