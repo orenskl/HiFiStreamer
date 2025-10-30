@@ -4,6 +4,16 @@ HiFiStreamer is an attempt to setup and build a full Audiophile network streamin
 
 This project is based on the [LibreELEC](https://libreelec.tv) JeOS disribution.
 
+## Features
+
++ [Mopidy](https://mopidy.com) audio streaming server
++ Web User Interface
++ Desktop User Interface
++ Airplay streaming with [Shairport-sync](https://github.com/mikebrady/shairport-sync)
++ [TIDAL](https://tidal.com) Lossless streaming
++ Local music library streaming
++ **Bit Perfect** playback
+
 ## Mopidy Plugins
 
 Currently this project includes the following [Mopidy](https://mopidy.com) plugins :
