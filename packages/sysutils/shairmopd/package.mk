@@ -2,8 +2,8 @@
 # Copyright (C) 2025 Oren Sokoler
 
 PKG_NAME="shairmopd"
-PKG_VERSION="0.0.1"
-PKG_SHA256="16836373ee92bfd69543e81c908e766457c4a4887f0b87739ed5550b98e649f2"
+PKG_VERSION="0.0.2"
+PKG_SHA256="4675a45c4625692833806d8705893aecbec44f6116f3bfef07d933e72784d539"
 PKG_LICENSE="MIT"
 PKG_URL="https://github.com/orenskl/shairmopd/archive/refs/tags/${PKG_VERSION}.tar.gz"
 PKG_DEPENDS_TARGET="toolchain Python3 python-dbus-next tornado"
