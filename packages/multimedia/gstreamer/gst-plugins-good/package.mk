@@ -7,7 +7,7 @@ PKG_SHA256="582e617271e7f314d1a2211e3e3856ae2e4303c8c0d6114e9c4a5ea5719294b0"
 PKG_LICENSE="GPL-2.1-or-later"
 PKG_SITE="https://gstreamer.freedesktop.org/modules/gst-plugins-good.html"
 PKG_URL="https://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-${PKG_VERSION}.tar.xz"
-PKG_DEPENDS_TARGET="toolchain gstreamer libsoup flac"
+PKG_DEPENDS_TARGET="toolchain gstreamer gst-plugins-base libsoup flac"
 PKG_LONGDESC="GStreamer Good Plug-ins is a set of plug-ins that we consider to have good quality code"
 PKG_BUILD_FLAGS="-gold"
 
