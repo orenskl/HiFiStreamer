@@ -1,6 +1,6 @@
 [Unit]
 Description=Cog service
-Requires=weston.service
+Wants=weston.service
 After=weston.service
 After=mopidy.service
 
@@ -8,6 +8,8 @@ After=mopidy.service
 Environment=XDG_RUNTIME_DIR=/var/run/0-runtime-dir/
 Environment=WAYLAND_DISPLAY=wayland-1
 ExecStart=/usr/bin/cog-launcher
+Restart=on-failure
+RestartSec=10
 
 [Install]
 WantedBy=graphical.target
