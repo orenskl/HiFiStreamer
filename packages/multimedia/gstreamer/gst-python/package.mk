@@ -1,6 +1,6 @@
 PKG_NAME="gst-python"
-PKG_VERSION="1.22.0"
-PKG_SHA256="6c63ad364ca4617eb2cbb3975ab26c66760eb3c7a6adf5be69f99c11e21ef3a5"
+PKG_VERSION="1.20.7"
+PKG_SHA256="a63db0cb502308446db3d3b0a23772f1966f9f2b98fddc22fca49560a0575adc"
 PKG_LICENSE="LGPL-2.1-or-later"
 PKG_SITE="https://gitlab.freedesktop.org/gstreamer/gst-python"
 PKG_URL="https://gstreamer.freedesktop.org/src/gst-python/gst-python-${PKG_VERSION}.tar.xz"

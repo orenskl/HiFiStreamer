@@ -2,8 +2,8 @@
 # Copyright (C) 2023 Oren Sokoler
 
 PKG_NAME="gst-plugins-good"
-PKG_VERSION="1.22.0"
-PKG_SHA256="582e617271e7f314d1a2211e3e3856ae2e4303c8c0d6114e9c4a5ea5719294b0"
+PKG_VERSION="1.20.7"
+PKG_SHA256="599f093cc833a1e346939ab6e78a3f8046855b6da13520aae80dd385434f4ab2"
 PKG_LICENSE="GPL-2.1-or-later"
 PKG_SITE="https://gstreamer.freedesktop.org/modules/gst-plugins-good.html"
 PKG_URL="https://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-${PKG_VERSION}.tar.xz"
@@ -28,7 +28,6 @@ pre_configure_target() {
                          -Ddv=disabled \
                          -Ddv1394=disabled \
                          -Dqt5=disabled \
-                         -Dqt6=disabled \
                          -Dximagesrc=disabled \
                          -Dximagesrc-xshm=disabled \
                          -Dximagesrc-xfixes=disabled \
