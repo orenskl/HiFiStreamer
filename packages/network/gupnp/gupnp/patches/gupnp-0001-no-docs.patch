@@ -1,0 +1,23 @@
+diff -rNu gupnp-1.2.7/meson.build gupnp-1.2.7.new/meson.build
+--- gupnp-1.2.7/meson.build	2021-06-05 22:09:38.268307700 +0000
++++ gupnp-1.2.7.new/meson.build	2026-02-17 14:00:51.887500462 +0000
+@@ -38,7 +38,6 @@
+ subdir('libgupnp')
+ subdir('tests')
+ subdir('tools')
+-subdir('doc')
+ 
+ if get_option('vapi') and get_option('introspection')
+     subdir('vala')
+diff -rNu gupnp-1.2.7/subprojects/gssdp-1.2.wrap gupnp-1.2.7.new/subprojects/gssdp-1.2.wrap
+--- gupnp-1.2.7/subprojects/gssdp-1.2.wrap	2021-06-05 22:09:38.268307700 +0000
++++ gupnp-1.2.7.new/subprojects/gssdp-1.2.wrap	1970-01-01 00:00:00.000000000 +0000
+@@ -1,8 +0,0 @@
+-[wrap-git]
+-url = https://gitlab.gnome.org/GNOME/gssdp.git
+-revision = master
+-depth = 1
+- 
+-[provides]
+-dependency_name = gssdp-1.2
+-
